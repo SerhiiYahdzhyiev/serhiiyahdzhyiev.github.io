@@ -1,5 +1,4 @@
-const dob = new Date('11-11-1994');
-const currentAge = getCurrentAgeInYears(dob);
+const currentAge = '26';
 const education = [
   {
     title: 'Odessa National College of Arts and Culture',
@@ -193,14 +192,6 @@ displayEducation(education);
 displayExperience(experience);
 displaySkills(skills);
 
-function getCurrentAgeInYears(dateOfBirth) {
-  const birthTime = dateOfBirth.getTime();
-  const currentTime = new Date().getTime();
-
-  const yearsInMilliseconds = currentTime - birthTime;
-
-  return ~~(yearsInMilliseconds / 31536000000);
-}
 function displayEducation(arrayOfObjects) {
   const target = document.getElementById('edu');
   let length = arrayOfObjects.length;

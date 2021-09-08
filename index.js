@@ -2,7 +2,7 @@ const currentAge = '26';
 const education = [
   {
     title: 'Odessa National College of Arts and Culture',
-    degree: 'Junior Specialist in Miusical Arts (Drums & Percussion)',
+    degree: 'Junior Specialist in Musical Arts (Drums & Percussion)',
     period: 'September 2012 - July 2016',
   },
 ];

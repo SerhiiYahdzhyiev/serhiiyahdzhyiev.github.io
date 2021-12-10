@@ -1,4 +1,4 @@
-const currentAge = '26';
+const currentAge = '27';
 const education = [
   {
     title: 'Odessa National College of Arts and Culture',

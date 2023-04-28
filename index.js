@@ -1,9 +1,14 @@
-const currentAge = '27';
+const currentAge = '28';
 const education = [
   {
     title: 'Odessa National College of Arts and Culture',
     degree: 'Junior Specialist in Musical Arts (Drums & Percussion)',
     period: 'September 2012 - July 2016',
+  },
+  {
+    title: 'GISMA Business School (Potsdam, Germany)',
+    degree: 'Software Egineering',
+    period: 'September 2022 - Today',
   },
 ];
 const experience = [
@@ -93,35 +98,19 @@ const skills = {
   development: [
     {
       title: 'Python',
-      level: 10,
-    },
-    {
-      title: 'MobX',
-      level: 40,
-    },
-    {
-      title: 'Redux Saga',
-      level: 30,
+      level: 60,
     },
     {
       title: 'Git/GitHub/GitLab',
-      level: 50,
+      level: 60,
     },
     {
       title: 'HTML/CSS/SASS',
+      level: 70,
+    },
+    {
+      title: 'Oracle Cloud',
       level: 50,
-    },
-    {
-      title: 'AWS',
-      level: 20,
-    },
-    {
-      title: 'Heroku',
-      level: 30,
-    },
-    {
-      title: 'Firebase',
-      level: 30,
     },
     {
       title: 'jQuery',
@@ -137,7 +126,7 @@ const skills = {
     },
     {
       title: 'Node.js',
-      level: 45,
+      level: 55,
     },
     {
       title: 'Redux',
@@ -149,29 +138,25 @@ const skills = {
     },
     {
       title: 'TypeScript',
-      level: 50,
+      level: 55,
     },
     {
       title: 'JavaScript',
-      level: 70,
+      level: 75,
     },
   ],
   languages: [
     {
       title: 'German',
-      level: 15,
-    },
-    {
-      title: 'Dutch',
-      level: 15,
+      level: 25,
     },
     {
       title: 'French',
-      level: 15,
+      level: 10,
     },
     {
       title: 'English',
-      level: 80,
+      level: 90,
     },
     {
       title: 'Russian',
@@ -215,6 +200,7 @@ function displayEducation(arrayOfObjects) {
     target.append(block);
   }
 }
+
 function displayExperience(arrayOfObjects) {
   const target = document.getElementById('exp');
   let length = arrayOfObjects.length;
@@ -233,6 +219,7 @@ function displayExperience(arrayOfObjects) {
     target.append(block);
   }
 }
+
 function displaySkills(object) {
   for (const key in object) {
     const array = object[key];

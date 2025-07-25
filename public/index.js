@@ -1,4 +1,4 @@
-const currentAge = '28';
+const currentAge = '31';
 const education = [
   {
     title: 'Odessa National College of Arts and Culture',
@@ -11,6 +11,7 @@ const education = [
     period: 'September 2022 - Today',
   },
 ];
+
 const experience = [
   {
     company: 'Phoenix Reisen Bonn, Germany',
@@ -58,7 +59,7 @@ const experience = [
   {
     company: 'Periodix.NET, (USA/Poland)',
     title: 'Junior Front-End Developer',
-    period: 'March 2021 - Today',
+    period: 'March 2021 - March 2024',
     list: [
       'Develop new UI components',
       'Maintain and scale existing UI',
@@ -66,6 +67,11 @@ const experience = [
       'Set up CI/CD for development purposes',
       'Maintain backend code parts on Node.js',
     ],
+  },
+  {
+    company: 'PERFACCT GmbH, (Germany)',
+    title: 'Working Student Fullstack Software Developer',
+    period: 'March 2024 - Now',
   },
 ];
 const skills = {
@@ -212,7 +218,7 @@ function displayExperience(arrayOfObjects) {
 <span class="exp-company">${company}</span>
 <h4 class="exp-title">${title}</h4>
 <span class="exp-period">${period}</span>
-<ul class="exp-list">${list.map((item) => `<li>${item}</li>`).join('')}</ul>
+<ul class="exp-list">${(list ?? []).map((item) => `<li>${item}</li>`).join('')}</ul>
 `;
     block.className = 'exp-block';
     block.innerHTML = template;

@@ -1,34 +1,44 @@
 ---
+import {Image} from "astro:assets";
+import avatar from "../assets/img/portrait.png";
 ---
-  <header class="header">
-    <div class="header-content">
-      <div class="header-pic-container">
-        <img src="/portrait.png" alt="portrait" class="header-pic" />
-      </div>
-      <div class="header-title-block">
-        <h4 class="header-title-secondary">Web Developer / Musician</h4>
-        <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
-        <span class="header-title-age" data-type="age"></span>
-      </div>
-      <input type="checkbox" id="toggler" style="opacity: 0" />
-      <nav class="header-nav">
-        <ul class="nav-list">
-          <li class="nav-list-item">
-            <a href="#skills" class="nav-link">Skills</a>
-          </li>
-          <li class="nav-list-item">
-            <a href="#edu" class="nav-link">Education</a>
-          </li>
-          <li class="nav-list-item">
-            <a href="#exp" class="nav-link">Experience</a>
-          </li>
-          <li class="nav-list-item">
-            <a href="#links" class="nav-link">Links</a>
-          </li>
-        </ul>
-      </nav>
-      <label for="toggler" class="toggler">
-        <i class="fas fa-bars"></i>
-      </label>
+
+<header class="header">
+  <div class="header-content">
+    <div class="header-pic-container">
+    <Image
+      src={avatar}
+      alt="portrait"
+      widths={[320, 640, 960]}
+      sizes="(max-width: 640px) 100vw, 640px"
+      loading="lazy"
+      class="header-pic"
+    />
     </div>
-  </header>
+    <div class="header-title-block">
+      <h4 class="header-title-secondary">Web Developer / Musician</h4>
+      <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
+      <span class="header-title-age" data-type="age"></span>
+    </div>
+    <input type="checkbox" id="toggler" style="opacity: 0" />
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li class="nav-list-item">
+          <a href="#skills" class="nav-link">Skills</a>
+        </li>
+        <li class="nav-list-item">
+          <a href="#edu" class="nav-link">Education</a>
+        </li>
+        <li class="nav-list-item">
+          <a href="#exp" class="nav-link">Experience</a>
+        </li>
+        <li class="nav-list-item">
+          <a href="#links" class="nav-link">Links</a>
+        </li>
+      </ul>
+    </nav>
+    <label for="toggler" class="toggler">
+      <i class="fas fa-bars"></i>
+    </label>
+  </div>
+</header>

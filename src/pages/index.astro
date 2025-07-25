@@ -1,174 +1,110 @@
 ---
 import "../styles/index.css";
+
+import BaseLayout from "../layouts/base.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
-    />
-    <link
-      rel="shortcut icon"
-      href="/favicon.ico?"
-      type="image/x-icon"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
-    <title>SY | CV</title>
-  </head>
-  <body>
-    <header class="header">
-      <div class="header-content">
-        <div class="header-pic-container">
-          <img src="portrait.png" alt="portrait" class="header-pic" />
-        </div>
-        <div class="header-title-block">
-          <h4 class="header-title-secondary">Web Developer / Musician</h4>
-          <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
-          <span class="header-title-age" data-type="age"></span>
-        </div>
-        <input type="checkbox" id="toggler" style="opacity: 0" />
-        <nav class="header-nav">
-          <ul class="nav-list">
-            <li class="nav-list-item">
-              <a href="#skills" class="nav-link">Skills</a>
-            </li>
-            <li class="nav-list-item">
-              <a href="#edu" class="nav-link">Education</a>
-            </li>
-            <li class="nav-list-item">
-              <a href="#exp" class="nav-link">Experience</a>
-            </li>
-            <li class="nav-list-item">
-              <a href="#links" class="nav-link">Links</a>
-            </li>
-          </ul>
-        </nav>
-        <label for="toggler" class="toggler">
-          <i class="fas fa-bars"></i>
-        </label>
+<BaseLayout title="SY | Home">
+  <div class="main-wrapper">
+    <section class="title-block">
+      <h4 class="title-secondary">Web Developer / Musician</h4>
+      <h1 class="title-primary">Serhii Yahdzhyiev</h1>
+      <span class="title-age" data-type="age"></span>
+    </section>
+    <section class="bio">
+      <h3 class="section-title">Bio</h3>
+      <p class="bio-text">
+        Born on November 11<sup>th</sup>, 1994 in Dnipro(UA). Got basic
+        education at Dnipro's General (elementary, middle and high combined)
+        School #22. In 2012 went to Odessa(UA) to get musical education at
+        Odessa National College of Arts and Culture. Graduated in 2016.<br /><br />The
+        same year started the mandatory military service period (18 month)
+        in Lviv(UA). Served as a gunner in Ukrainian National Guard
+        (Military Police). Carried out escorting and guarding defendants and
+        convicts in the courtrooms as part of the guard. Was transferred to
+        the reserve in December 2017.<br /><br />In 2018 moved back to
+        Odessa, worked as freelance musician doing gigs and cruse ship
+        contracts. With the start of global COVID-19 pandemic changed
+        occupation. Starting from July 2020 became member of Periodix.Net
+        team as a lead generation specialist. In March 2021 got the position
+        of Junior Front-End Developer in the same company.
+      </p>
+    </section>
+    <section id="edu">
+      <h3 class="section-title">Education</h3>
+    </section>
+    <section id="exp">
+      <h3 class="section-title">Work Experience</h3>
+    </section>
+    <section id="skills">
+      <h3 class="section-title">Skills</h3>
+      <div class="skills-section">
+        <h4 class="skills-section-title">Musical</h4>
+        <div class="skills-row" id="musical"></div>
       </div>
-    </header>
-    <main>
-      <div class="main-wrapper">
-        <section class="title-block">
-          <h4 class="title-secondary">Web Developer / Musician</h4>
-          <h1 class="title-primary">Serhii Yahdzhyiev</h1>
-          <span class="title-age" data-type="age"></span>
-        </section>
-        <section class="bio">
-          <h3 class="section-title">Bio</h3>
-          <p class="bio-text">
-            Born on November 11<sup>th</sup>, 1994 in Dnipro(UA). Got basic
-            education at Dnipro's General (elementary, middle and high combined)
-            School #22. In 2012 went to Odessa(UA) to get musical education at
-            Odessa National College of Arts and Culture. Graduated in 2016.<br /><br />The
-            same year started the mandatory military service period (18 month)
-            in Lviv(UA). Served as a gunner in Ukrainian National Guard
-            (Military Police). Carried out escorting and guarding defendants and
-            convicts in the courtrooms as part of the guard. Was transferred to
-            the reserve in December 2017.<br /><br />In 2018 moved back to
-            Odessa, worked as freelance musician doing gigs and cruse ship
-            contracts. With the start of global COVID-19 pandemic changed
-            occupation. Starting from July 2020 became member of Periodix.Net
-            team as a lead generation specialist. In March 2021 got the position
-            of Junior Front-End Developer in the same company.
-          </p>
-        </section>
-        <section id="edu">
-          <h3 class="section-title">Education</h3>
-        </section>
-        <section id="exp">
-          <h3 class="section-title">Work Experience</h3>
-        </section>
-        <section id="skills">
-          <h3 class="section-title">Skills</h3>
-          <div class="skills-section">
-            <h4 class="skills-section-title">Musical</h4>
-            <div class="skills-row" id="musical"></div>
-          </div>
-          <div class="skills-section">
-            <h4 class="skills-section-title">Web Development</h4>
-            <div class="skills-row" id="development"></div>
-          </div>
-          <div class="skills-section">
-            <h4 class="skills-section-title">Languages</h4>
-            <div class="skills-row" id="languages"></div>
-          </div>
-        </section>
-        <section id="links">
-          <h3 class="section-title">Links</h3>
-          <div class="links-section">
-            <h4 class="links-section-title">Contacts</h4>
-            <div class="links-row">
-              <a
-                href="tel:+4901603261013"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fas fa-phone-alt"></i>+49-(0)160-326-19-13</a
-              >
-              <a
-                href="mailto:mr.blooods@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fas fa-envelope"></i>mr.blooods@gmail.com</a
-              >
-              <a
-                href="https://t.me/MrBloods"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fab fa-telegram"></i>Telegram</a
-              >
-            </div>
-          </div>
-          <div class="links-section">
-            <h4 class="links-section-title">Social</h4>
-            <div class="links-row">
-              <a
-                href="https://soundcloud.com/sy1994"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fab fa-soundcloud"></i>SoundCloud</a
-              >
-              <a
-                href="https://www.youtube.com/channel/UC0kVfzH0_MTFu8Pkur8aHZg"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fab fa-youtube"></i>YouTube</a
-              >
-              <a
-                href="https://github.com/SergeyYahdzhyiev"
-                target="_blank"
-                rel="noreferrer"
-                class="link"
-                ><i class="fab fa-github"></i>Github</a
-              >
-            </div>
-          </div>
-        </section>
+      <div class="skills-section">
+        <h4 class="skills-section-title">Web Development</h4>
+        <div class="skills-row" id="development"></div>
       </div>
-    </main>
-    <script is:inline src="/index.js"></script>
-  </body>
-</html>
+      <div class="skills-section">
+        <h4 class="skills-section-title">Languages</h4>
+        <div class="skills-row" id="languages"></div>
+      </div>
+    </section>
+    <section id="links">
+      <h3 class="section-title">Links</h3>
+      <div class="links-section">
+        <h4 class="links-section-title">Contacts</h4>
+        <div class="links-row">
+          <a
+            href="tel:+4901603261013"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fas fa-phone-alt"></i>+49-(0)160-326-19-13</a
+          >
+          <a
+            href="mailto:mr.blooods@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fas fa-envelope"></i>mr.blooods@gmail.com</a
+          >
+          <a
+            href="https://t.me/MrBloods"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fab fa-telegram"></i>Telegram</a
+          >
+        </div>
+      </div>
+      <div class="links-section">
+        <h4 class="links-section-title">Social</h4>
+        <div class="links-row">
+          <a
+            href="https://soundcloud.com/sy1994"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fab fa-soundcloud"></i>SoundCloud</a
+          >
+          <a
+            href="https://www.youtube.com/channel/UC0kVfzH0_MTFu8Pkur8aHZg"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fab fa-youtube"></i>YouTube</a
+          >
+          <a
+            href="https://github.com/SergeyYahdzhyiev"
+            target="_blank"
+            rel="noreferrer"
+            class="link"
+            ><i class="fab fa-github"></i>Github</a
+          >
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

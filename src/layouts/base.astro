@@ -1,0 +1,19 @@
+---
+import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
+import Main from "../components/Main.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <Head/>
+  </head>
+  <body>
+    <Header/>
+    <main>
+        <slot/>
+    </main>
+    <script is:inline src="/index.js"></script>
+  </body>
+</html>

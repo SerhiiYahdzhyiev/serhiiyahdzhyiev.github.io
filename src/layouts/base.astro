@@ -12,8 +12,10 @@ import Main from "../components/Main.astro";
   <body>
     <Header/>
     <main>
+      <div class="main-wrapper">
         <slot/>
+      </div>
     </main>
-    <script is:inline src="/index.js"></script>
+    <!-- <script is:inline src="/index.js"></script> -->
   </body>
 </html>

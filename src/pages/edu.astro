@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/base.astro";
+
+const education = [
+  {
+    title: 'Odessa National College of Arts and Culture',
+    degree: 'Junior Specialist in Musical Arts (Drums & Percussion)',
+    period: 'September 2012 - July 2016',
+  },
+  {
+    title: 'GISMA Business School (Potsdam, Germany)',
+    degree: 'Software Egineering',
+    period: 'September 2022 - Today',
+  },
+];
+---
+
+<BaseLayout title="SY | Home">
+  <section id="edu">
+    <h3 class="section-title">Education</h3>
+    {
+      education.toReversed().map(ed => (
+        <div class="edu-block">
+          <h2 class="edu-title">
+            {ed.title}
+          </h2>
+          <h4 class="edu-degree">
+            {ed.degree}
+          </h4>
+          <span class="edu-period">{ed.period}</span>
+        </div>
+
+      ))
+    }
+  </section>
+</BaseLayout>

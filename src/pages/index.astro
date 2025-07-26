@@ -1,5 +1,13 @@
 ---
 import BaseLayout from "../layouts/base.astro";
+
+import Skill from "../components/skills/item.astro";
+import ExperienceItem from "../components/experience/item.astro";
+import EducationItem from "../components/education/item.astro";
+
+import {education} from "../data/education";
+import {experience} from "../data/experience";
+import {skills} from "../data/skills";
 ---
 
 <BaseLayout title="SY | Home">
@@ -29,23 +37,60 @@ import BaseLayout from "../layouts/base.astro";
   </section>
   <section id="edu">
     <h3 class="section-title">Education</h3>
+    {
+      education?.toReversed().map(ed => (
+        <EducationItem
+          title={ed.title}
+          degree={ed.degree}
+          period={ed.period}
+        />
+      ))
+    }
   </section>
   <section id="exp">
     <h3 class="section-title">Work Experience</h3>
+    {experience?.toReversed().map(item => 
+      (
+      <ExperienceItem
+        company={item.company}
+        title={item.title}
+        period={item.period}
+        list={item.list}
+      />
+      )
+    )}
   </section>
   <section id="skills">
     <h3 class="section-title">Skills</h3>
     <div class="skills-section">
       <h4 class="skills-section-title">Musical</h4>
-      <div class="skills-row" id="musical"></div>
+      <div class="skills-row" id="musical">
+        {
+          skills.musical.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
     </div>
     <div class="skills-section">
       <h4 class="skills-section-title">Web Development</h4>
-      <div class="skills-row" id="development"></div>
+      <div class="skills-row" id="development">
+        {
+          skills.development.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
     </div>
     <div class="skills-section">
       <h4 class="skills-section-title">Languages</h4>
-      <div class="skills-row" id="languages"></div>
+      <div class="skills-row" id="languages">
+        {
+          skills.languages.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
     </div>
   </section>
   <section id="links">
@@ -103,5 +148,4 @@ import BaseLayout from "../layouts/base.astro";
       </div>
     </div>
   </section>
-  <script is:inline src="/index.js"></script>
 </BaseLayout>

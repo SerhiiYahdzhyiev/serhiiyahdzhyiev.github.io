@@ -1,0 +1,15 @@
+---
+const {company, title, period, list} = Astro.props;
+---
+<div class="exp-block">
+  <span class="exp-company">{company}</span>
+  <h4 class="exp-title">{title}</h4>
+  <span class="exp-period">{period}</span>
+  <ul class="exp-list">
+    {
+      list?.map((item) => (
+        <li>{item}</li>
+      ))
+    }
+  </ul>
+</div>

@@ -1,7 +1,4 @@
----
-import BaseLayout from "../layouts/base.astro";
-
-const experience = [
+export const experience = [
   {
     company: 'Phoenix Reisen Bonn, Germany',
     title: 'Showband Musician (Drums)',
@@ -63,27 +60,3 @@ const experience = [
     period: 'March 2024 - Now',
   },
 ];
----
-
-<BaseLayout title="SY | Work Experience">
-  <section id="exp">
-    <h3 class="section-title">Work Experience</h3>
-    {experience.toReversed().map(item => 
-      (
-        <div class="exp-block">
-          <span class="exp-company">{item.company}</span>
-          <h4 class="exp-title">{item.title}</h4>
-          <span class="exp-period">{item.period}</span>
-          <ul class="exp-list">
-            {
-              item.list?.map((listItem) => (
-                <li>{listItem}</li>
-              ))
-            }
-          </ul>
-        </div>
-      )
-    )}
-  </section>
-</BaseLayout>
-

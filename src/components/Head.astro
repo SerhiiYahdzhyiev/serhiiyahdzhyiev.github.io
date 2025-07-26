@@ -1,5 +1,6 @@
 ---
 import "../styles/index.css"
+import Meta from "./Meta.astro";
 
 const {title = "SY", ...props } = Astro.props;
 ---
@@ -21,13 +22,6 @@ const {title = "SY", ...props } = Astro.props;
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<meta
-  name="viewport"
-  content="width=device-width"
-/>
-<meta
-  name="generator"
-  content={Astro.generator}
-/>
+<Meta/>
 <title>{title}</title>
 

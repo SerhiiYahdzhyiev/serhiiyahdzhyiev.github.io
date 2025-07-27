@@ -13,12 +13,18 @@ import Navigation from "./Navigation.astro";
       <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
       <span class="header-title-age" data-type="age"></span>
     </div>
-    <input type="checkbox" id="toggler" style="opacity: 0" />
+    <input
+      type="checkbox"
+      id="toggle"
+      style="opacity: 0"
+      aria-labelledby="toggler-label"
+    />
     <nav class="header-nav">
       <Navigation/>
     </nav>
-    <label for="toggler" class="toggler">
-      <i class="fas fa-bars"></i>
+    <label for="toggle" class="toggler" id="toggler-label">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+      <span class="sr-only">Toggle Navigation Menu</span>
     </label>
   </div>
 </header>

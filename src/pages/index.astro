@@ -12,12 +12,12 @@ import {skills} from "../data/skills";
 
 <BaseLayout title="SY | Home">
   <section class="title-block">
-    <h4 class="title-secondary">Web Developer / Musician</h4>
+    <span class="title-secondary">Web Developer / Musician</span>
     <h1 class="title-primary">Serhii Yahdzhyiev</h1>
     <span class="title-age" data-type="age"></span>
   </section>
   <section class="bio">
-    <h3 class="section-title">Bio</h3>
+    <h2 class="section-title">Bio</h2>
     <p class="bio-text">
       Born on November 11<sup>th</sup>, 1994 in Dnipro(UA). Got basic
       education at Dnipro's General (elementary, middle and high combined)
@@ -36,7 +36,7 @@ import {skills} from "../data/skills";
     </p>
   </section>
   <section id="edu">
-    <h3 class="section-title">Education</h3>
+    <h2 class="section-title">Education</h2>
     {
       education?.toReversed().map(ed => (
         <EducationItem
@@ -48,7 +48,7 @@ import {skills} from "../data/skills";
     }
   </section>
   <section id="exp">
-    <h3 class="section-title">Work Experience</h3>
+    <h2 class="section-title">Work Experience</h2>
     {experience?.toReversed().map(item => 
       (
       <ExperienceItem
@@ -61,9 +61,9 @@ import {skills} from "../data/skills";
     )}
   </section>
   <section id="skills">
-    <h3 class="section-title">Skills</h3>
+    <h2 class="section-title">Skills</h2>
     <div class="skills-section">
-      <h4 class="skills-section-title">Musical</h4>
+      <h3 class="skills-section-title">Musical</h3>
       <div class="skills-row" id="musical">
         {
           skills.musical.map(skill => (
@@ -73,7 +73,7 @@ import {skills} from "../data/skills";
       </div>
     </div>
     <div class="skills-section">
-      <h4 class="skills-section-title">Web Development</h4>
+      <h3 class="skills-section-title">Web Development</h3>
       <div class="skills-row" id="development">
         {
           skills.development.map(skill => (
@@ -83,7 +83,7 @@ import {skills} from "../data/skills";
       </div>
     </div>
     <div class="skills-section">
-      <h4 class="skills-section-title">Languages</h4>
+      <h3 class="skills-section-title">Languages</h3>
       <div class="skills-row" id="languages">
         {
           skills.languages.map(skill => (
@@ -94,9 +94,9 @@ import {skills} from "../data/skills";
     </div>
   </section>
   <section id="links">
-    <h3 class="section-title">Links</h3>
+    <h2 class="section-title">Links</h2>
     <div class="links-section">
-      <h4 class="links-section-title">Contacts</h4>
+      <h3 class="links-section-title">Contacts</h3>
       <div class="links-row">
         <a
           href="tel:+4901603261013"
@@ -122,7 +122,7 @@ import {skills} from "../data/skills";
       </div>
     </div>
     <div class="links-section">
-      <h4 class="links-section-title">Social</h4>
+      <h3 class="links-section-title">Social</h3>
       <div class="links-row">
         <a
           href="https://soundcloud.com/sy1994"

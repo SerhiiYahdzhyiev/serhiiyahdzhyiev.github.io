@@ -1,0 +1,30 @@
+---
+import Portrait from "./Portrait.astro";
+import Navigation from "./Navigation.astro";
+---
+
+<header class="header">
+  <div class="header-content">
+    <a href="/" class="header-pic-container">
+      <Portrait/>
+    </a>
+    <div class="header-title-block">
+      <span class="header-title-secondary">Web Developer / Musician</span>
+      <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
+      <span class="header-title-age" data-type="age"></span>
+    </div>
+    <input
+      type="checkbox"
+      id="toggle"
+      style="opacity: 0"
+      aria-labelledby="toggler-label"
+    />
+    <nav class="header-nav">
+      <Navigation/>
+    </nav>
+    <label for="toggle" class="toggler" id="toggler-label">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+      <span class="sr-only">Toggle Navigation Menu</span>
+    </label>
+  </div>
+</header>

@@ -1,14 +1,21 @@
 {
   "name": "website",
   "type": "module",
+  "license": "MIT",
   "version": "0.0.1",
   "scripts": {
+    "clean": "rimraf .astro dist",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.12.3"
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.12.3",
+    "astro-compressor": "^1.0.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
   }
 }

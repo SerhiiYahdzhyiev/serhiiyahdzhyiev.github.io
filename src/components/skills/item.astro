@@ -1,0 +1,11 @@
+---
+const {title, level} = Astro.props;
+---
+<div class="skill-block">
+  <h4 class="skill-title">{title}</h4>
+  <div class="skill-level-row">
+    <span class="skill-level-label">Basic</span>
+    <progress value={level} max="100" class="skill-level"></progress>
+    <span class="skill-level-label">Expert</span>
+  </div>
+</div>

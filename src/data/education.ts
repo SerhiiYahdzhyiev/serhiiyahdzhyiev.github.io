@@ -7,6 +7,6 @@ export const education = [
   {
     title: 'GISMA Business School (Potsdam, Germany)',
     degree: 'Software Egineering',
-    period: 'September 2022 - Today',
+    period: 'September 2022 - November 2025',
   },
 ];

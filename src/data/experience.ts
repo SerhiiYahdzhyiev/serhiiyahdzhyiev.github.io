@@ -56,7 +56,7 @@ export const experience = [
   },
   {
     company: 'PERFACCT GmbH, (Germany)',
-    title: 'Working Student Fullstack Software Developer',
+    title: '(Working Student) Full-stack Software Engineer',
     period: 'March 2024 - Now',
   },
 ];

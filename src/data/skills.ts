@@ -1,88 +1,76 @@
 export const skills = {
   musical: [
     {
-      title: 'Sight-Reading',
-      level: 60,
-    },
-    {
       title: 'Sound Production',
-      level: 60,
+      level: 70,
     },
     {
       title: 'Composition & Arrangement',
-      level: 75,
+      level: 70,
     },
     {
       title: 'Keys',
-      level: 60,
+      level: 50,
     },
     {
       title: 'Guitar/Bass',
-      level: 65,
+      level: 70,
     },
     {
       title: 'Drums & Percussion',
-      level: 95,
+      level: 80,
     },
   ],
   development: [
     {
+      title: 'JavaScript/TypeScript',
+      level: 90,
+    },
+    {
       title: 'Python',
-      level: 60,
+      level: 90,
     },
     {
-      title: 'Git/GitHub/GitLab',
-      level: 60,
-    },
-    {
-      title: 'HTML/CSS/SASS',
+      title: 'C',
       level: 70,
     },
     {
-      title: 'Oracle Cloud',
-      level: 50,
+      title: 'Bash',
+      level: 60,
     },
     {
-      title: 'jQuery',
-      level: 50,
-    },
-    {
-      title: 'Webpack',
-      level: 50,
+      title: 'HTML/CSS',
+      level: 90,
     },
     {
       title: 'MongoDB',
-      level: 40,
+      level: 70,
+    },
+    {
+      title: 'PostgresQL',
+      level: 70,
     },
     {
       title: 'Node.js',
-      level: 55,
+      level: 70,
     },
     {
-      title: 'Redux',
+      title: 'Angular',
       level: 50,
     },
     {
       title: 'React',
-      level: 65,
+      level: 70,
     },
     {
-      title: 'TypeScript',
-      level: 55,
-    },
-    {
-      title: 'JavaScript',
-      level: 75,
+      title: 'Vue',
+      level: 70,
     },
   ],
   languages: [
     {
       title: 'German',
-      level: 25,
-    },
-    {
-      title: 'French',
-      level: 10,
+      level: 40,
     },
     {
       title: 'English',

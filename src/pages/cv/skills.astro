@@ -1,11 +1,9 @@
 ---
-import BaseLayout from "../layouts/base.astro";
-
-import Skill from "../components/skills/item.astro";
-
-import {skills} from "../data/skills";
+import CVLayout from "../../layouts/cv.astro";
+import Skill from "../../components/skills/item.astro";
+import {skills} from "../../data/skills";
 ---
-<BaseLayout title="SY | Skills">
+<CVLayout title="SY | Skills">
   <section id="skills">
     <h2 class="section-title">Skills</h2>
     <div class="skills-section">
@@ -39,4 +37,4 @@ import {skills} from "../data/skills";
       </div>
     </div>
   </section>
-</BaseLayout>
+</CVLayout>

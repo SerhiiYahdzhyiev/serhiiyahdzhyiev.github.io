@@ -1,12 +1,10 @@
 ---
-import BaseLayout from "../layouts/base.astro";
-
-import EducationItem from "../components/education/item.astro";
-
-import {education} from "../data/education";
+import CVLayout from "../../layouts/cv.astro";
+import EducationItem from "../../components/education/item.astro";
+import {education} from "../../data/education";
 ---
 
-<BaseLayout title="SY | Education">
+<CVLayout title="SY | Education">
   <section id="edu">
     <h2 class="section-title">Education</h2>
     {
@@ -19,4 +17,4 @@ import {education} from "../data/education";
       ))
     }
   </section>
-</BaseLayout>
+</CVLayout>

@@ -16,18 +16,11 @@ is in active development, but I hope to start it someday).
 - Set up Embedded Videos Page.
 - Set up Music Player + Tracks "hosting/storage".
 
-## 🧞 Commands
+## Dev Setup
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
+1. Clone this repo.
+2. (Optional but recommended) Set node version (e.g. `nvm install && nvm use`).
+3. Install dependencies with `npm ci`. 
 
 ## License
 

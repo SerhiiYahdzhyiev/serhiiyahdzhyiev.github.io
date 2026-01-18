@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/base.astro";
+
+import Skill from "../components/skills/item.astro";
+
+import {skills} from "../data/skills";
+---
+<BaseLayout title="SY | Skills">
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-section">
+      <h3 class="skills-section-title">Musical</h3>
+      <div class="skills-row" id="musical">
+        {
+          skills.musical.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
+    </div>
+    <div class="skills-section">
+      <h3 class="skills-section-title">Software Development</h3>
+      <div class="skills-row" id="development">
+        {
+          skills.development.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
+    </div>
+    <div class="skills-section">
+      <h3 class="skills-section-title">Languages</h3>
+      <div class="skills-row" id="languages">
+        {
+          skills.languages.map(skill => (
+            <Skill title={skill.title} level={skill.level}/>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

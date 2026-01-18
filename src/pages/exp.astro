@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/base.astro";
+
+import ExperienceItem from "../components/experience/item.astro";
+
+import {experience} from "../data/experience";
+---
+
+<BaseLayout title="SY | Experience">
+  <section id="exp">
+    <h2 class="section-title">Work Experience</h2>
+    {experience?.toReversed().map(item => 
+      (
+      <ExperienceItem
+        company={item.company}
+        title={item.title}
+        period={item.period}
+        list={item.list}
+      />
+      )
+    )}
+  </section>
+</BaseLayout>

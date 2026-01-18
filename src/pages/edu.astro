@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/base.astro";
+
+import EducationItem from "../components/education/item.astro";
+
+import {education} from "../data/education";
+---
+
+<BaseLayout title="SY | Education">
+  <section id="edu">
+    <h2 class="section-title">Education</h2>
+    {
+      education?.toReversed().map(ed => (
+        <EducationItem
+          title={ed.title}
+          degree={ed.degree}
+          period={ed.period}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

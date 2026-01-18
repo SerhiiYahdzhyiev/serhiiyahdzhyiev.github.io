@@ -7,7 +7,6 @@ is in active development, but I hope to start it someday).
 
 - Set up a design system (SASS/CSS framework)
 - Set up ShadCN and/or Radix UI components.
-- Add sitemap integration.
 - Set up Meta component (for SEO and such).
 - Add public artifacts.
    - Robots TXT.

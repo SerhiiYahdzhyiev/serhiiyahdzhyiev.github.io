@@ -20,6 +20,7 @@ is in active development, but I hope to start it someday).
 1. Clone this repo.
 2. (Optional but recommended) Set node version (e.g. `nvm install && nvm use`).
 3. Install dependencies with `npm ci`. 
+4. Lauch local dev version with: `npm run dev`.
 
 ## License
 

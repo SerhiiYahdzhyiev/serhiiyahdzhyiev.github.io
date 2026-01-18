@@ -1,6 +1,8 @@
 ---
 import Portrait from "./Portrait.astro";
 import Navigation from "./Navigation.astro";
+
+import {main} from "../data/main.ts";
 ---
 
 <header class="header">
@@ -9,8 +11,8 @@ import Navigation from "./Navigation.astro";
       <Portrait/>
     </a>
     <div class="header-title-block">
-      <span class="header-title-secondary">Web Developer / Musician</span>
-      <h1 class="header-title-primary">Serhii Yahdzhyiev</h1>
+      <span class="header-title-secondary">{main.title}</span>
+      <h1 class="header-title-primary">{main.full_name}</h1>
       <span class="header-title-age" data-type="age"></span>
     </div>
     <input

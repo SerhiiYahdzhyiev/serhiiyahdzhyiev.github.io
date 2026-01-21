@@ -43,3 +43,9 @@ h4 { font-size: var(--fs-3); }
 h5, lead { font-size: var(--fs-2); }
 
 small { font-size: var(--fs-0); }
+strong { font-weight: var(--fw-semibold); }
+code {
+	font-family: var(--ff-mono);
+	font-weight: var(--fw-regular);
+	line-height: var(--lg-body);
+}

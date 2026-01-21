@@ -5,25 +5,6 @@ import Navigation from "./Navigation.astro";
 import {main} from "../data/main.ts";
 ---
 
-<header class="header">
-  <div class="header-content">
-    <div class="header-title-block">
-      <span class="header-title-secondary">{main.title}</span>
-      <h1 class="header-title-primary">{main.full_name}</h1>
-      <span class="header-title-age" data-type="age"></span>
-    </div>
-    <input
-      type="checkbox"
-      id="toggle"
-      style="opacity: 0"
-      aria-labelledby="toggler-label"
-    />
-    <nav class="header-nav">
-      <Navigation/>
-    </nav>
-    <label for="toggle" class="toggler" id="toggler-label">
-      <i class="fas fa-bars" aria-hidden="true"></i>
-      <span class="sr-only">Toggle Navigation Menu</span>
-    </label>
-  </div>
+<header>
+  <Navigation/>
 </header>

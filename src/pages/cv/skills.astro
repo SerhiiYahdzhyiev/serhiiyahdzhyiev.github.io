@@ -5,10 +5,10 @@ import {skills} from "../../data/skills";
 ---
 <CVLayout title="SY | Skills">
   <section id="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-section">
-      <h3 class="skills-section-title">Musical</h3>
-      <div class="skills-row" id="musical">
+    <h2>Skills</h2>
+    <div>
+      <h3>Musical</h3>
+      <div id="musical">
         {
           skills.musical.map(skill => (
             <Skill title={skill.title} level={skill.level}/>
@@ -16,9 +16,9 @@ import {skills} from "../../data/skills";
         }
       </div>
     </div>
-    <div class="skills-section">
-      <h3 class="skills-section-title">Software Development</h3>
-      <div class="skills-row" id="development">
+    <div>
+      <h3>Software Development</h3>
+      <div id="development">
         {
           skills.development.map(skill => (
             <Skill title={skill.title} level={skill.level}/>
@@ -26,9 +26,9 @@ import {skills} from "../../data/skills";
         }
       </div>
     </div>
-    <div class="skills-section">
-      <h3 class="skills-section-title">Languages</h3>
-      <div class="skills-row" id="languages">
+    <div>
+      <h3>Languages</h3>
+      <div id="languages">
         {
           skills.languages.map(skill => (
             <Skill title={skill.title} level={skill.level}/>

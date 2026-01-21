@@ -1,0 +1,7 @@
+/* TODO: Add theming...*/
+:root {
+    --clr-text-body: rgba(0,0,0,0.6);
+    --clr-text-muted: rgba(0,0,0,0.4);
+    --clr-text-heading-1: rgba(0,0,0,1);
+    --clr-text-heading-2: rgba(0,0,0,0.8);
+}

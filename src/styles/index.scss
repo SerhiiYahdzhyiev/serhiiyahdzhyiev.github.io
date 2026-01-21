@@ -1,1 +1,7 @@
-@use './core/reset.scss'
+@use './tokens/typo.css' as tokens_typo;
+@use './tokens/color.css';
+
+@use './core/reset.scss';
+@use './core/base.scss';
+@use './core/layout.scss';
+@use './core/typo.scss';

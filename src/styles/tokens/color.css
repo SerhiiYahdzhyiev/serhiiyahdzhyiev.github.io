@@ -1,18 +1,23 @@
 :root {
-    --clr-bg-body: white;
-    --clr-text-body: rgba(0,0,0,0.6);
-    --clr-text-muted: rgba(0,0,0,0.4);
-    --clr-text-heading-1: rgba(0,0,0,1);
-    --clr-text-heading-2: rgba(0,0,0,0.8);
+  --clr-bg-body: #ffffff;
+  --clr-bg-surface: #f5f5f5;
+
+  --clr-text-primary: rgba(0, 0, 0, 0.9);
+  --clr-text-secondary: rgba(0, 0, 0, 0.6);
+  --clr-text-muted: rgba(0, 0, 0, 0.4);
+
+  --clr-border: rgba(0, 0, 0, 0.1);
+  --clr-accent: #3b82f6;
 }
 
 [data-variant="dark"] {
-    --clr-bg-body: rgba(0,0,0);
+  --clr-bg-body: #000000;
+  --clr-bg-surface: #111111;
 
-    --clr-text-body: rgba(255,255,255,0.6);
-    --clr-text-muted: rgba(255,255,255,0.4);
-    --clr-text-heading-1: rgba(255,255,255,1);
-    --clr-text-heading-2: rgba(0,0,0,0.8);
+  --clr-text-primary: rgba(255, 255, 255, 0.9);
+  --clr-text-secondary: rgba(255, 255, 255, 0.6);
+  --clr-text-muted: rgba(255, 255, 255, 0.4);
+
+  --clr-border: rgba(255, 255, 255, 0.15);
+  --clr-accent: #60a5fa;
 }
-
-/* TODO: Add theming...*/

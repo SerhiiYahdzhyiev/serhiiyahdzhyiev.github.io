@@ -1,5 +1,6 @@
 @use './tokens/typo.css' as tokens_typo;
 @use './tokens/color.css';
+@use './tokens/spacing.css';
 
 @use './core/reset.scss';
 @use './core/base.scss';

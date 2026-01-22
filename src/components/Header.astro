@@ -2,9 +2,14 @@
 import Portrait from "./Portrait.astro";
 import Navigation from "./Navigation.astro";
 
+import SwitchTheme from "./SwitchTheme.tsx";
+
 import {main} from "../data/main.ts";
 ---
 
-<header>
-  <Navigation/>
+<header class="w-100%">
+  <div class="flex items-center justify-between px-4">
+    <Navigation/>
+    <SwitchTheme client:idle/>
+  </div>
 </header>

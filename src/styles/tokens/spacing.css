@@ -14,5 +14,12 @@
   --sp-md: var(--sp-4);
   --sp-lg: var(--sp-6);
   --sp-xl: var(--sp-8);
-}
 
+  --rd-sm: 0.25rem;
+  --rd-md: 0.5rem;
+  --rd-lg: 0.75rem;
+  --rd-xl: 1rem;
+
+  --bw-hairline: 1px;
+  --bw-thin: 1px;
+}

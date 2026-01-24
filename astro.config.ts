@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
 import compressor from "astro-compressor";
 import UnoCSS from "unocss/astro";
 
@@ -18,6 +17,5 @@ export default defineConfig({
     }),
     compressor(),
     UnoCSS(),
-    react(),
   ],
 });

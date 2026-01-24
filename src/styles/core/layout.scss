@@ -1,3 +1,49 @@
+main {
+  padding: var(--sp-6) var(--sp-4);
+}
+
+section {
+  margin-top: var(--sp-7);
+}
+
+.panel {
+  background-color: var(--clr-surface-1);
+  padding: var(--sp-5);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+}
+
+.panel--raised {
+  background-color: var(--clr-surface-2);
+  box-shadow: var(--sh-surface-1);
+}
+
+.panel--floating {
+  background-color: var(--clr-surface-3);
+  box-shadow: var(--sh-surface-2);
+}
+
+.card {
+  background-color: var(--clr-surface-1);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card {
+  background-color: var(--clr-surface-1);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card--interactive:hover {
+  box-shadow: var(--sh-surface-2);
+  transform: translateY(-1px);
+}
+
 p {
   margin-block: var(--sp-0);
 }

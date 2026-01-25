@@ -1,33 +1,53 @@
+/* :root { */
+/*   --clr-bg-body: #ffffff; */
+/*   --clr-bg-surface: #f5f5f5; */
+/**/
+/*   --clr-text-primary: rgba(0, 0, 0, 0.9); */
+/*   --clr-text-secondary: rgba(0, 0, 0, 0.6); */
+/*   --clr-text-muted: rgba(0, 0, 0, 0.4); */
+/**/
+/*   --clr-border: rgba(0, 0, 0, 0.1); */
+/*   --clr-accent: #3b82f6; */
+/**/
+/*   --clr-surface-1: rgba(0, 0, 0, 0.02); */
+/*   --clr-surface-2: rgba(0, 0, 0, 0.05); */
+/*   --clr-surface-3: rgba(0, 0, 0, 0.08); */
+/**/
+/*   --clr-border-subtle: rgba(0, 0, 0, 0.1); */
+/*   --clr-border-strong: rgba(0, 0, 0, 0.2); */
+/**/
+/*   --sh-surface-1: 0 1px 2px rgba(0, 0, 0, 0.04); */
+/*   --sh-surface-2: 0 4px 12px rgba(0, 0, 0, 0.08); */
+/* } */
+/**/
+/* [data-variant="dark"] { */
+/*   --clr-bg-body: #000000; */
+/*   --clr-bg-surface: #111111; */
+/**/
+/*   --clr-text-primary: rgba(255, 255, 255, 0.9); */
+/*   --clr-text-secondary: rgba(255, 255, 255, 0.6); */
+/*   --clr-text-muted: rgba(255, 255, 255, 0.4); */
+/**/
+/*   --clr-border: rgba(255, 255, 255, 0.15); */
+/*   --clr-accent: #60a5fa; */
+/* } */
+
 :root {
-  --clr-bg-body: #ffffff;
-  --clr-bg-surface: #f5f5f5;
+  --clr-bg-body: #C8DCF2;
+  --clr-bg-surface: #FFFFFF;
+  --clr-bg-header: #272240;
 
-  --clr-text-primary: rgba(0, 0, 0, 0.9);
-  --clr-text-secondary: rgba(0, 0, 0, 0.6);
-  --clr-text-muted: rgba(0, 0, 0, 0.4);
+  --clr-text-primary: #272240;
+  --clr-text-secondary: #524749;
+  --clr-text-muted: rgba(39, 34, 64, 0.55);
 
-  --clr-border: rgba(0, 0, 0, 0.1);
-  --clr-accent: #3b82f6;
+  --clr-accent: #E6AED5;
+  --clr-accent-soft: #C8DCF2;
 
-  --clr-surface-1: rgba(0, 0, 0, 0.02);
-  --clr-surface-2: rgba(0, 0, 0, 0.05);
-  --clr-surface-3: rgba(0, 0, 0, 0.08);
+  --clr-border-subtle: rgba(39, 34, 64, 0.12);
+  --clr-border-strong: rgba(39, 34, 64, 0.22);
 
-  --clr-border-subtle: rgba(0, 0, 0, 0.1);
-  --clr-border-strong: rgba(0, 0, 0, 0.2);
-
-  --sh-surface-1: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --sh-surface-2: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-[data-variant="dark"] {
-  --clr-bg-body: #000000;
-  --clr-bg-surface: #111111;
-
-  --clr-text-primary: rgba(255, 255, 255, 0.9);
-  --clr-text-secondary: rgba(255, 255, 255, 0.6);
-  --clr-text-muted: rgba(255, 255, 255, 0.4);
-
-  --clr-border: rgba(255, 255, 255, 0.15);
-  --clr-accent: #60a5fa;
+  --clr-surface-1: #FFFFFF;
+  --clr-surface-2: #E8F1F0;
+  --clr-surface-3: #C8DCF2;
 }

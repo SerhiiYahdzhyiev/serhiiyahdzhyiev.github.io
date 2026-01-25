@@ -22,7 +22,7 @@ export default defineConfig({
       surface: 'var(--clr-bg-surface)',
       text: 'var(--clr-text-primary)',
       muted: 'var(--clr-text-muted)',
-      border: 'var(--clr-border)',
+      border: 'var(--clr-border-subtle)',
       accent: 'var(--clr-accent)',
     },
     fontFamily: {

@@ -33,21 +33,23 @@
 /* } */
 
 :root {
-  --clr-bg-body: #C8DCF2;
-  --clr-bg-surface: #FFFFFF;
+  --clr-bg-body: #7998C4;
   --clr-bg-header: #272240;
+
+  --clr-bg-section-1: #C8DCF2;
 
   --clr-text-primary: #272240;
   --clr-text-secondary: #524749;
   --clr-text-muted: rgba(39, 34, 64, 0.55);
 
-  --clr-accent: #E6AED5;
-  --clr-accent-soft: #C8DCF2;
+  --clr-accent: #A94579;
+  --clr-accent-soft: #E6AED5;
 
   --clr-border-subtle: rgba(39, 34, 64, 0.12);
   --clr-border-strong: rgba(39, 34, 64, 0.22);
-
-  --clr-surface-1: #FFFFFF;
-  --clr-surface-2: #E8F1F0;
-  --clr-surface-3: #C8DCF2;
 }
+
+.bg-section {
+  background-color: var(--clr-bg-section-1);
+}
+

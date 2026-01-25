@@ -1,9 +1,29 @@
-main {
-  padding: var(--sp-6) var(--sp-4);
+section {
+  padding:var(--sp-4);
 }
 
-section {
-  margin-top: var(--sp-7);
+header,
+footer {
+  background-color: var(--clr-bg-header);
+  padding: var(--sp-6) var(--sp-4);
+
+  #links {
+    gap: var(--sp-3);
+    a {
+      i {
+        font-size: var(--fs-2);
+      }
+    }
+  }
+  
+  a {
+    color: var(--clr-bg-section-1);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--clr-accent-soft);
+    }
+  }
 }
 
 .panel {
@@ -53,7 +73,7 @@ p + p {
 }
 
 h1, h2, h3, h4, h5 {
-  margin-top: var(--sp-5);
+  margin-top: var(--sp-6);
   margin-bottom: var(--sp-4);
 }
 

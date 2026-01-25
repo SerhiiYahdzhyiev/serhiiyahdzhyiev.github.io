@@ -3,7 +3,7 @@ body {
 	font-size: var(--fs-1);
 	font-weight: var(--fw-regular);
 	line-height: var(--lh-body);
-	color: var(--clr-text-secondary);
+	color: var(--clr-text-primary);
 }
 
 h1 {
@@ -25,13 +25,13 @@ h3 {
 }
 
 h4 {
-	color: var(--clr-text-secondary);
+	color: var(--clr-text-primary);
 	font-weight: var(--fw-semibold);
 	line-height: var(--lh-heading);
 }
 
 h5 {
-	color: var(--clr-text-secondary);
+	color: var(--clr-text-primary);
 	font-weight: var(--fw-regular);
 	line-height: var(--lh-heading);
 }

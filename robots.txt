@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: https://serhiiyahdzhyiev.github.io/sitemap-index.xml
-

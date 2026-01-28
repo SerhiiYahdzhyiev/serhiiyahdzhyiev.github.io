@@ -1,0 +1,11 @@
+---
+const {title, level} = Astro.props;
+---
+<div>
+  <h4>{title}</h4>
+  <div>
+    <span>Basic</span>
+    <progress value={level} max="100"></progress>
+    <span>Expert</span>
+  </div>
+</div>

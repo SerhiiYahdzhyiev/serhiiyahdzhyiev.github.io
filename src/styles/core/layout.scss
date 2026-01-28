@@ -1,0 +1,87 @@
+section {
+  padding:var(--sp-4);
+}
+
+header,
+footer {
+  background-color: var(--clr-bg-header);
+  padding: var(--sp-6) var(--sp-4);
+
+  #links {
+    gap: var(--sp-3);
+    a {
+      i {
+        font-size: var(--fs-2);
+      }
+    }
+  }
+  
+  a {
+    color: var(--clr-bg-section-1);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--clr-accent-soft);
+    }
+  }
+}
+
+.panel {
+  background-color: var(--clr-surface-1);
+  padding: var(--sp-5);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+}
+
+.panel--raised {
+  background-color: var(--clr-surface-2);
+  box-shadow: var(--sh-surface-1);
+}
+
+.panel--floating {
+  background-color: var(--clr-surface-3);
+  box-shadow: var(--sh-surface-2);
+}
+
+.card {
+  background-color: var(--clr-surface-1);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card {
+  background-color: var(--clr-surface-1);
+  border-radius: var(--rd-lg);
+  border: var(--bw-hairline) solid var(--clr-border-subtle);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card--interactive:hover {
+  box-shadow: var(--sh-surface-2);
+  transform: translateY(-1px);
+}
+
+p {
+  margin-block: var(--sp-0);
+}
+
+p + p {
+  margin-top: var(--sp-5);
+}
+
+h1, h2, h3, h4, h5 {
+  margin-top: var(--sp-6);
+  margin-bottom: var(--sp-4);
+}
+
+h2 {
+  margin-top: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+
+h2 + h3, h3 + h4, h4 + h5 {
+  margin-top: var(--sp-3);
+}

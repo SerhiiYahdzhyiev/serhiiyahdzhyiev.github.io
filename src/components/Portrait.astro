@@ -1,0 +1,12 @@
+---
+import {Picture} from "astro:assets";
+import avatar from "../assets/img/portrait.png";
+---
+
+<Picture
+  src={avatar}
+  alt="portrait"
+  formats={["avif", "webp"]}
+  widths={[320, 640, 960]}
+  loading="lazy"
+/>

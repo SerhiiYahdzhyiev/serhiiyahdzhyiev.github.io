@@ -3,8 +3,12 @@ import Page from "../layouts/Page.astro";
 import { main } from "../data/main.ts";
 import { getCollection } from "astro:content";
 
-const recentPosts = (await getCollection("blog", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+const recentPosts = (
+    await getCollection("blog", ({ data }) => !data.draft)
+  )
+  .sort(
+    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
+  )
   .slice(0, 3);
 
 function formatDate(d: Date) {
@@ -18,7 +22,7 @@ function formatDate(d: Date) {
 
 <Page
   title="SY — Serhii Yahdzhyiev"
-  description="Software engineer and musician. Personal site of Serhii Yahdzhyiev."
+  description="Software engineer and musician"
 >
   <div class="landing">
     <!-- Hero -->
@@ -30,8 +34,8 @@ function formatDate(d: Date) {
           <p class="hero__full-name">{main.full_name}</p>
           <p class="hero__tagline">{main.title}</p>
           <p class="hero__bio">
-            I build software during the day and make music at night. Based in
-            Potsdam, Germany — originally from Dnipro, Ukraine.
+            Building software, making music and producing videos no
+            one ever watches or cares about.
           </p>
           <div class="hero__actions">
             <a
@@ -79,7 +83,7 @@ function formatDate(d: Date) {
           </div>
           <h2 class="section-card__title">Music</h2>
           <p class="section-card__desc">
-            Original tracks — self-hosted, no algorithm.
+            Original tracks.
           </p>
         </a>
 
@@ -102,7 +106,7 @@ function formatDate(d: Date) {
           </div>
           <h2 class="section-card__title">Videos</h2>
           <p class="section-card__desc">
-            Performances, sessions, and experiments on video.
+            Performances and DYI productions.
           </p>
         </a>
 
@@ -125,7 +129,7 @@ function formatDate(d: Date) {
           </div>
           <h2 class="section-card__title">Blog</h2>
           <p class="section-card__desc">
-            Writing about code, production, and whatever else.
+            General writing about everything.
           </p>
         </a>
       </div>

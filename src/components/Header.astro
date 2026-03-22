@@ -2,11 +2,22 @@
 import Navigation from "./Navigation.astro";
 import ThemeToggle from "./layout/ThemeToggle.astro";
 import { main } from "../data/main.ts";
+
+const isHome = Astro.url.pathname === "/";
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a href="/" class="site-header__wordmark" aria-label="Home">
+    <a
+      href="/"
+      class:list={[
+        "site-header__wordmark",
+        { "site-header__wordmark--hidden": isHome },
+      ]}
+      aria-label="Home"
+      aria-hidden={isHome ? "true" : undefined}
+      tabindex={isHome ? -1 : undefined}
+    >
       {main.handle}
     </a>
     <Navigation />
@@ -45,5 +56,10 @@ import { main } from "../data/main.ts";
 
   .site-header__wordmark:hover {
     color: var(--clr-accent);
+  }
+
+  .site-header__wordmark--hidden {
+    visibility: hidden;
+    pointer-events: none;
   }
 </style>

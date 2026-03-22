@@ -20,7 +20,9 @@ const isHome = Astro.url.pathname === "/";
     >
       {main.handle}
     </a>
-    <Navigation />
+    <div class="site-header__nav">
+      <Navigation />
+    </div>
     <ThemeToggle />
   </div>
 </header>
@@ -61,5 +63,15 @@ const isHome = Astro.url.pathname === "/";
   .site-header__wordmark--hidden {
     visibility: hidden;
     pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .site-header__inner {
+      justify-content: space-between;
+    }
+
+    .site-header__nav {
+      order: -1;
+    }
   }
 </style>

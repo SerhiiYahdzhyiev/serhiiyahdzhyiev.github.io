@@ -228,9 +228,8 @@ const tabs = [
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-label={`${s.title}: ${s.level}%`}
-                >
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
+                  style={`--pct: ${s.level}%`}
+                />
               </li>
             ))
           }
@@ -251,9 +250,8 @@ const tabs = [
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-label={`${s.title}: ${s.level}%`}
-                >
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
+                  style={`--pct: ${s.level}%`}
+                />
               </li>
             ))
           }
@@ -268,12 +266,15 @@ const tabs = [
               skills.systems.map((s) => (
                 <li class="skill-item">
                   <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
                 </li>
               ))
             }
@@ -286,12 +287,15 @@ const tabs = [
               skills.devops.map((s) => (
                 <li class="skill-item">
                   <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
                 </li>
               ))
             }
@@ -304,12 +308,15 @@ const tabs = [
               skills.qa.map((s) => (
                 <li class="skill-item">
                   <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
                 </li>
               ))
             }
@@ -322,12 +329,15 @@ const tabs = [
               skills.musical.map((s) => (
                 <li class="skill-item">
                   <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
                 </li>
               ))
             }
@@ -340,12 +350,15 @@ const tabs = [
               skills.languages.map((s) => (
                 <li class="skill-item">
                   <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
                 </li>
               ))
             }
@@ -488,7 +501,10 @@ const tabs = [
   .cv-tabs {
     display: flex;
     gap: 0;
-    background-image: linear-gradient(var(--clr-border-subtle), var(--clr-border-subtle));
+    background-image: linear-gradient(
+      var(--clr-border-subtle),
+      var(--clr-border-subtle)
+    );
     background-size: 100% 1px;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -710,15 +726,12 @@ const tabs = [
   }
 
   .skill-item__bar {
-    height: 3px;
-    background: var(--clr-border-subtle);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .skill-item__fill {
-    height: 3px;
-    background: var(--clr-accent);
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--clr-accent) var(--pct),
+      var(--clr-border-subtle) var(--pct)
+    );
     border-radius: 2px;
   }
 

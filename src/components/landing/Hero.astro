@@ -20,7 +20,9 @@ import Portrait from "../Portrait.astro";
         <a href="/blog/" class="btn btn--ghost">Blog</a>
       </div>
     </div>
-    <Portrait />
+    <div class="hero__portrait">
+      <Portrait />
+    </div>
   </div>
 </section>
 
@@ -126,7 +128,9 @@ import Portrait from "../Portrait.astro";
     }
 
     .hero__portrait {
-      display: none;
+      order: -1;
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

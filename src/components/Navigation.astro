@@ -16,7 +16,49 @@ function isActive(href: string) {
 ---
 
 <nav class="nav" aria-label="Main navigation">
-  <ul class="nav__list">
+  <button
+    class="nav__toggle"
+    id="nav-toggle"
+    aria-label="Toggle navigation"
+    aria-expanded="false"
+    aria-controls="nav-menu"
+  >
+    <svg
+      class="nav__hamburger"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="4" y1="6" x2="20" y2="6"></line>
+      <line x1="4" y1="12" x2="20" y2="12"></line>
+      <line x1="4" y1="18" x2="20" y2="18"></line>
+    </svg>
+    <svg
+      class="nav__close"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <ul class="nav__list" id="nav-menu" role="list">
     {
       navLinks.map(({ href, label }) => (
         <li>
@@ -33,28 +75,140 @@ function isActive(href: string) {
   </ul>
 </nav>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("nav-toggle");
+    const nav = toggle?.closest(".nav");
+
+    toggle?.addEventListener("click", () => {
+      const isOpen = nav?.classList.toggle("nav--open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    nav?.querySelectorAll(".nav__link").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("nav--open");
+        toggle?.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
+</script>
+
 <style>
-  .nav__list {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-5);
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .nav {
+    position: relative;
   }
 
-  .nav__link {
-    font-size: var(--fs-0);
-    font-family: var(--ff-mono);
-    text-decoration: none;
-    color: var(--clr-text-muted);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.15s ease;
+  /* Close icon hidden by default */
+  .nav__close {
+    display: none;
   }
 
-  .nav__link:hover,
-  .nav__link--active {
-    color: var(--clr-text-primary);
+  .nav--open .nav__hamburger {
+    display: none;
+  }
+
+  .nav--open .nav__close {
+    display: block;
+  }
+
+  /* ── Desktop ─────────────────────────── */
+  @media (min-width: 769px) {
+    .nav__toggle {
+      display: none;
+    }
+
+    .nav__list {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-5);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav__link {
+      font-size: var(--fs-0);
+      font-family: var(--ff-mono);
+      text-decoration: none;
+      color: var(--clr-text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.15s ease;
+    }
+
+    .nav__link:hover,
+    .nav__link--active {
+      color: var(--clr-text-primary);
+    }
+  }
+
+  /* ── Mobile ──────────────────────────── */
+  @media (max-width: 768px) {
+    .nav__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: none;
+      border: 1px solid var(--clr-border-subtle);
+      border-radius: var(--rd-md);
+      color: var(--clr-text-muted);
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav__toggle:hover {
+      color: var(--clr-text-primary);
+      border-color: var(--clr-border-strong);
+    }
+
+    .nav__list {
+      display: none;
+      position: absolute;
+      top: calc(100% + var(--sp-3));
+      right: 0;
+      min-width: 160px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      list-style: none;
+      margin: 0;
+      background: var(--clr-bg-header);
+      border: 1px solid var(--clr-border-subtle);
+      border-radius: var(--rd-lg);
+      box-shadow: var(--sh-surface-2);
+      padding: var(--sp-2);
+      z-index: 200;
+    }
+
+    .nav--open .nav__list {
+      display: flex;
+    }
+
+    .nav__list li {
+      width: 100%;
+    }
+
+    .nav__link {
+      display: block;
+      width: 100%;
+      padding: var(--sp-3);
+      border-radius: var(--rd-md);
+      font-size: var(--fs-0);
+      font-family: var(--ff-mono);
+      text-decoration: none;
+      color: var(--clr-text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .nav__link:hover,
+    .nav__link--active {
+      color: var(--clr-text-primary);
+      background: var(--clr-surface-1);
+    }
   }
 </style>

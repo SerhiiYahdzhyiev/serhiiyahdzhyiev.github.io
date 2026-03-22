@@ -1,5 +1,6 @@
 ---
 import Page from "../../layouts/Page.astro";
+import LiteYouTube from "../../components/LiteYouTube.astro";
 import { videos } from "../../data/videos.ts";
 import { main } from "../../data/main.ts";
 ---
@@ -19,7 +20,7 @@ import { main } from "../../data/main.ts";
         rel="noreferrer"
         class="videos-page__youtube"
       >
-        More on YouTube →
+        Watch more on YouTube →
       </a>
     </header>
 
@@ -31,13 +32,7 @@ import { main } from "../../data/main.ts";
           {videos.map((video) => (
             <li class="video-card">
               <div class="video-card__embed">
-                <iframe
-                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                />
+                <LiteYouTube videoId={video.youtubeId} title={video.title} />
               </div>
               <div class="video-card__info">
                 <h2 class="video-card__title">{video.title}</h2>
@@ -121,19 +116,7 @@ import { main } from "../../data/main.ts";
   }
 
   .video-card__embed {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
     overflow: hidden;
-  }
-
-  .video-card__embed iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
   }
 
   .video-card__info {

@@ -46,6 +46,22 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="/fonts/Archivo-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/InconsolataGo-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+
     <!-- styles & icons -->
     <Head />
     <slot name="head" />

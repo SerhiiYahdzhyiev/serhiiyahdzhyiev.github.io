@@ -20,12 +20,12 @@ const tracks = trackEntries.map((e) => e.data).sort((a, b) => b.year - a.year);
         rel="noreferrer"
         class="music-page__soundcloud"
       >
-        More on SoundCloud →
+        Listen on SoundCloud →
       </a>
     </header>
 
     <div class="music-page__player">
-      <AudioPlayer tracks={tracks} client:load />
+      <AudioPlayer tracks={tracks} client:visible />
     </div>
   </div>
 </Page>

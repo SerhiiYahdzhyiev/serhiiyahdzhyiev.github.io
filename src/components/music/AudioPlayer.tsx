@@ -387,8 +387,8 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
         }
 
         .player-btn:hover:not(:disabled) {
-          color: var(--clr-text-primary);
-          border-color: var(--clr-border-strong);
+          color: var(--clr-accent);
+          border-color: var(--clr-accent);
           background: var(--clr-surface-1);
         }
 
@@ -532,7 +532,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
         }
 
         .track-item__btn:hover .track-item__title {
-          color: var(--clr-text-primary);
+          color: var(--clr-accent);
         }
 
         .track-item__tags {

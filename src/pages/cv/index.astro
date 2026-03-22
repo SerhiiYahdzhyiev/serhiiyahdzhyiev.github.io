@@ -72,7 +72,13 @@ const tabs = [
     </nav>
 
     <!-- Bio -->
-    <div data-panel="bio" class="cv-panel" role="tabpanel" id="panel-bio" aria-labelledby="tab-bio">
+    <div
+      data-panel="bio"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-bio"
+      aria-labelledby="tab-bio"
+    >
       <div class="bio-text">
         <p>
           Born 1994 in Dnipro, Ukraine. Graduated in performance arts from the
@@ -93,7 +99,14 @@ const tabs = [
     </div>
 
     <!-- Experience -->
-    <div data-panel="experience" class="cv-panel" role="tabpanel" id="panel-experience" aria-labelledby="tab-experience" hidden>
+    <div
+      data-panel="experience"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-experience"
+      aria-labelledby="tab-experience"
+      hidden
+    >
       <ul class="entry-list">
         {
           experience.map((item) => (
@@ -119,7 +132,14 @@ const tabs = [
     </div>
 
     <!-- Projects -->
-    <div data-panel="projects" class="cv-panel" role="tabpanel" id="panel-projects" aria-labelledby="tab-projects" hidden>
+    <div
+      data-panel="projects"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-projects"
+      aria-labelledby="tab-projects"
+      hidden
+    >
       <ul class="entry-list">
         {
           projects.map((project) => (
@@ -152,7 +172,14 @@ const tabs = [
     </div>
 
     <!-- Education -->
-    <div data-panel="education" class="cv-panel" role="tabpanel" id="panel-education" aria-labelledby="tab-education" hidden>
+    <div
+      data-panel="education"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-education"
+      aria-labelledby="tab-education"
+      hidden
+    >
       <ul class="entry-list">
         {
           education.map((item) => (
@@ -172,7 +199,14 @@ const tabs = [
     </div>
 
     <!-- Skills -->
-    <div data-panel="skills" class="cv-panel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" hidden>
+    <div
+      data-panel="skills"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-skills"
+      aria-labelledby="tab-skills"
+      hidden
+    >
       <div class="skills-section">
         <h2 class="cv-section-heading">Soft Skills</h2>
         <ul class="soft-skills-list">
@@ -321,7 +355,14 @@ const tabs = [
     </div>
 
     <!-- Publications -->
-    <div data-panel="publications" class="cv-panel" role="tabpanel" id="panel-publications" aria-labelledby="tab-publications" hidden>
+    <div
+      data-panel="publications"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-publications"
+      aria-labelledby="tab-publications"
+      hidden
+    >
       <ul class="entry-list">
         {
           publications.map((pub) => (
@@ -476,7 +517,7 @@ const tabs = [
   }
 
   .cv-tab:hover {
-    color: var(--clr-text-primary);
+    color: var(--clr-accent);
   }
 
   .cv-tab--active {

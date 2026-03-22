@@ -6,7 +6,6 @@ import Portrait from "../Portrait.astro";
 <section class="hero">
   <div class="hero__inner">
     <div class="hero__content">
-      <p class="hero__label">Hello, I'm</p>
       <h1 class="hero__name">{main.handle}</h1>
       <p class="hero__full-name">{main.full_name}</p>
       <p class="hero__tagline">{main.title}</p>
@@ -119,6 +118,8 @@ import Portrait from "../Portrait.astro";
 
   .btn--ghost:hover {
     background: var(--clr-surface-1);
+    color: var(--clr-accent);
+    border-color: var(--clr-accent);
   }
 
   @media (max-width: 768px) {

@@ -72,17 +72,17 @@
   }
 
   /* In dark mode: hide moon, show sun */
-  :global(.dark) .theme-toggle {
+  :global(html.dark) .theme-toggle {
     color: var(--clr-text-primary);
     border-color: var(--clr-border-strong);
   }
 
-  :global(.dark) .theme-toggle__moon {
+  :global(html.dark) .theme-toggle__moon {
     display: none;
   }
 
   /* In light mode: hide sun, show moon */
-  :global(:not(.dark)) .theme-toggle__sun {
+  :global(html:not(.dark)) .theme-toggle__sun {
     display: none;
   }
 </style>

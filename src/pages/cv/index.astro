@@ -4,6 +4,17 @@ import { main } from "../../data/main.ts";
 import { experience } from "../../data/cv/experience.ts";
 import { education } from "../../data/cv/education.ts";
 import { skills } from "../../data/cv/skills.ts";
+import { projects } from "../../data/cv/projects.ts";
+import { publications } from "../../data/cv/publications.ts";
+
+const tabs = [
+  { id: "bio", label: "Bio" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+  { id: "skills", label: "Skills" },
+  { id: "publications", label: "Publications" },
+];
 ---
 
 <Page
@@ -11,6 +22,7 @@ import { skills } from "../../data/cv/skills.ts";
   description="Background, experience, and skills of Serhii Yahdzhyiev."
 >
   <div class="cv-page">
+
     <header class="cv-page__header">
       <div class="cv-page__intro">
         <h1>{main.full_name}</h1>
@@ -42,121 +54,267 @@ import { skills } from "../../data/cv/skills.ts";
       </a>
     </header>
 
-    <div class="cv-page__bio">
-      <p>
-        Born 1994 in Dnipro, Ukraine. Graduated from Odessa National College of
-        Arts and Culture in 2016. After a period of military service and a
-        career as a cruise ship musician, pivoted to software development in
-        2021. Currently completing a Bachelor's degree in Software Engineering
-        at GISMA University (Potsdam, Germany) while working as a Full-Stack
-        Software Engineer.
-      </p>
+    <!-- Tab bar -->
+    <nav class="cv-tabs" aria-label="CV sections">
+      {tabs.map((tab, i) => (
+        <button
+          class:list={["cv-tab", { "cv-tab--active": i === 0 }]}
+          data-tab={tab.id}
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </nav>
+
+    <!-- Bio -->
+    <div data-panel="bio" class="cv-panel">
+      <div class="bio-text">
+        <p>
+          Born 1994 in Dnipro, Ukraine. Graduated in performance arts from the
+          State College of Arts and Culture (Odessa, 2016). After a period of
+          military service and a career as a cruise ship musician, pivoted to
+          software development in 2021. Completed a Bachelor's in Software
+          Engineering at GISMA University of Applied Sciences (Potsdam, 2025).
+        </p>
+        <p>
+          Contributes across the full software development lifecycle — from
+          requirements analysis and architecture design to implementation,
+          testing, and deployment. Places strong emphasis on reproducibility,
+          maintainability, and transparency of results. Primary interests:
+          data-driven applications that leverage modern algorithms to automate
+          and digitalize complex processes.
+        </p>
+      </div>
+
+      <h2 class="cv-section-heading">Soft Skills</h2>
+      <ul class="soft-skills-list">
+        {skills.soft.map((s) => <li>{s}</li>)}
+      </ul>
     </div>
 
-    <section class="cv-section">
-      <h2>Experience</h2>
-      <ul class="experience-list">
-        {
-          experience.map((item) => (
-            <li class="experience-item">
-              <div class="experience-item__header">
-                <div>
-                  <h3 class="experience-item__title">{item.title}</h3>
-                  <span class="experience-item__company">{item.company}</span>
-                </div>
-                <span class="experience-item__period">{item.period}</span>
+    <!-- Experience -->
+    <div data-panel="experience" class="cv-panel" hidden>
+      <ul class="entry-list">
+        {experience.map((item) => (
+          <li class="entry">
+            <div class="entry__header">
+              <div>
+                <h3 class="entry__title">{item.title}</h3>
+                <span class="entry__sub">{item.company}</span>
               </div>
-              {item.list && item.list.length > 0 && (
-                <ul class="experience-item__list">
-                  {item.list.map((point) => (
-                    <li>{point}</li>
+              <span class="entry__period">{item.period}</span>
+            </div>
+            {item.list && item.list.length > 0 && (
+              <ul class="entry__list">
+                {item.list.map((point) => <li>{point}</li>)}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Projects -->
+    <div data-panel="projects" class="cv-panel" hidden>
+      <ul class="entry-list">
+        {projects.map((project) => (
+          <li class="entry">
+            <div class="entry__header">
+              <div>
+                <h3 class="entry__title">
+                  {project.title}
+                  {project.tags.map((tag) => (
+                    <span class="entry__tag">{tag}</span>
                   ))}
-                </ul>
-              )}
-            </li>
-          ))
-        }
+                </h3>
+                <span class="entry__sub">{project.organization}</span>
+              </div>
+              <span class="entry__period">{project.period}</span>
+            </div>
+            <ul class="entry__list">
+              {project.list.map((point) => <li>{point}</li>)}
+            </ul>
+            <p class="entry__tools">
+              <span class="entry__tools-label">Tools:</span>
+              {project.tools.join(" · ")}
+            </p>
+          </li>
+        ))}
       </ul>
-    </section>
+    </div>
 
-    <section class="cv-section">
-      <h2>Education</h2>
-      <ul class="experience-list">
-        {
-          education.map((item) => (
-            <li class="experience-item">
-              <div class="experience-item__header">
-                <div>
-                  <h3 class="experience-item__title">{item.title}</h3>
-                  <span class="experience-item__company">{item.degree}</span>
-                </div>
-                <span class="experience-item__period">{item.period}</span>
+    <!-- Education -->
+    <div data-panel="education" class="cv-panel" hidden>
+      <ul class="entry-list">
+        {education.map((item) => (
+          <li class="entry">
+            <div class="entry__header">
+              <div>
+                <h3 class="entry__title">{item.institution}</h3>
+                <span class="entry__sub">{item.degree}</span>
+                <span class="entry__location">{item.location}</span>
+              </div>
+              <span class="entry__period">{item.period}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div data-panel="skills" class="cv-panel" hidden>
+      <div class="skills-section">
+        <h2 class="cv-section-heading">Frontend</h2>
+        <ul class="skills-list">
+          {skills.frontend.map((s) => (
+            <li class="skill-item">
+              <span class="skill-item__name">{s.title}</span>
+              <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                <div class="skill-item__fill" style={`width: ${s.level}%`} />
               </div>
             </li>
-          ))
-        }
-      </ul>
-    </section>
+          ))}
+        </ul>
+      </div>
 
-    <section class="cv-section">
-      <h2>Skills</h2>
+      <div class="skills-section">
+        <h2 class="cv-section-heading">Backend</h2>
+        <ul class="skills-list">
+          {skills.backend.map((s) => (
+            <li class="skill-item">
+              <span class="skill-item__name">{s.title}</span>
+              <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                <div class="skill-item__fill" style={`width: ${s.level}%`} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div class="skills-grid">
-        <div class="skills-group">
-          <h3>Development</h3>
+        <div>
+          <h2 class="cv-section-heading">System Engineering / HPC</h2>
           <ul class="skills-list">
-            {
-              skills.development.map((s) => (
-                <li class="skill-item">
-                  <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
-                </li>
-              ))
-            }
+            {skills.systems.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
-        <div class="skills-group">
-          <h3>Musical</h3>
+        <div>
+          <h2 class="cv-section-heading">DevOps & Processes</h2>
           <ul class="skills-list">
-            {
-              skills.musical.map((s) => (
-                <li class="skill-item">
-                  <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
-                </li>
-              ))
-            }
+            {skills.devops.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))}
           </ul>
-          <h3 style="margin-top: var(--sp-6)">Languages</h3>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">QA & Testing</h2>
           <ul class="skills-list">
-            {
-              skills.languages.map((s) => (
-                <li class="skill-item">
-                  <span class="skill-item__name">{s.title}</span>
-                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                    <div
-                      class="skill-item__fill"
-                      style={`width: ${s.level}%`}
-                    />
-                  </div>
-                </li>
-              ))
-            }
+            {skills.qa.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">Musical</h2>
+          <ul class="skills-list">
+            {skills.musical.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">Languages</h2>
+          <ul class="skills-list">
+            {skills.languages.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Publications -->
+    <div data-panel="publications" class="cv-panel" hidden>
+      <ul class="entry-list">
+        {publications.map((pub) => (
+          <li class="entry">
+            <div class="entry__header">
+              <div>
+                <h3 class="entry__title">
+                  {pub.url
+                    ? <a href={pub.url} target="_blank" rel="noreferrer">{pub.title}</a>
+                    : pub.title}
+                </h3>
+                <p class="entry__authors">
+                  {pub.authors.map((a, i) => (
+                    <span class:list={["pub-author", { "pub-author--self": a === main.full_name }]}>
+                      {a}{i < pub.authors.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                </p>
+                {pub.venue && <span class="entry__sub">{pub.venue}</span>}
+              </div>
+              <span class="entry__period">{pub.year}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
   </div>
 </Page>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".cv-tab");
+    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+
+        tabs.forEach((t) => {
+          t.classList.remove("cv-tab--active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("cv-tab--active");
+        tab.setAttribute("aria-selected", "true");
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.panel !== target;
+        });
+      });
+    });
+  });
+</script>
 
 <style>
   .cv-page {
@@ -165,6 +323,7 @@ import { skills } from "../../data/cv/skills.ts";
     padding: var(--sp-8) var(--sp-5);
   }
 
+  /* Header */
   .cv-page__header {
     display: flex;
     align-items: flex-start;
@@ -214,68 +373,77 @@ import { skills } from "../../data/cv/skills.ts";
     opacity: 0.85;
   }
 
-  .cv-page__bio {
-    font-size: var(--fs-2);
-    color: var(--clr-text-secondary);
-    line-height: var(--lh-body);
+  /* Tabs */
+  .cv-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--clr-border-subtle);
+    margin-bottom: var(--sp-8);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cv-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cv-tab {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    padding: var(--sp-3) var(--sp-4);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .cv-tab:hover {
+    color: var(--clr-text-primary);
+  }
+
+  .cv-tab--active {
+    color: var(--clr-text-primary);
+    border-bottom-color: var(--clr-accent);
+  }
+
+  /* Panels */
+  .cv-panel {
+    animation: panel-in 0.15s ease;
+  }
+
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Bio */
+  .bio-text {
     max-width: 65ch;
     margin-bottom: var(--sp-8);
   }
 
-  /* Sections */
-  .cv-section {
-    margin-bottom: var(--sp-8);
-  }
-
-  .cv-section h2 {
-    font-size: var(--fs-3);
-    margin: 0 0 var(--sp-6);
-    padding-bottom: var(--sp-3);
-    border-bottom: 1px solid var(--clr-border-subtle);
-  }
-
-  /* Experience */
-  .experience-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-6);
-  }
-
-  .experience-item__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--sp-4);
-    margin-bottom: var(--sp-3);
-  }
-
-  .experience-item__title {
+  .bio-text p {
     font-size: var(--fs-2);
-    font-weight: var(--fw-semibold);
-    color: var(--clr-text-primary);
-    margin: 0 0 var(--sp-1);
-  }
-
-  .experience-item__company {
-    font-size: var(--fs-1);
     color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--sp-4);
   }
 
-  .experience-item__period {
-    font-family: var(--ff-mono);
-    font-size: var(--fs-0);
-    color: var(--clr-text-muted);
-    white-space: nowrap;
-    flex-shrink: 0;
+  .cv-section-heading {
+    font-size: var(--fs-2);
+    margin: 0 0 var(--sp-4);
+    color: var(--clr-text-primary);
   }
 
-  .experience-item__list {
+  .soft-skills-list {
     list-style: disc;
     padding-left: var(--sp-5);
-    margin: 0;
     display: flex;
     flex-direction: column;
     gap: var(--sp-2);
@@ -284,16 +452,123 @@ import { skills } from "../../data/cv/skills.ts";
     line-height: var(--lh-body);
   }
 
+  /* Entries (experience, projects, education) */
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-7);
+  }
+
+  .entry__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);
+  }
+
+  .entry__title {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-semibold);
+    color: var(--clr-text-primary);
+    margin: 0 0 var(--sp-1);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .entry__title a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .entry__tag {
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: var(--rd-sm);
+    padding: 0.1em 0.5em;
+    font-weight: var(--fw-regular);
+  }
+
+  .entry__sub {
+    display: block;
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+  }
+
+  .entry__location {
+    display: block;
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    margin-top: var(--sp-1);
+  }
+
+  .entry__period {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .entry__list {
+    list-style: disc;
+    padding-left: var(--sp-5);
+    margin: 0 0 var(--sp-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .entry__tools {
+    font-size: var(--fs-0);
+    font-family: var(--ff-mono);
+    color: var(--clr-text-muted);
+    margin: 0;
+    line-height: var(--lh-body);
+  }
+
+  .entry__tools-label {
+    color: var(--clr-text-secondary);
+    font-weight: var(--fw-medium);
+    margin-right: var(--sp-2);
+  }
+
+  /* Publications */
+  .entry__authors {
+    font-size: var(--fs-1);
+    color: var(--clr-text-muted);
+    margin: var(--sp-2) 0 0;
+    line-height: var(--lh-body);
+  }
+
+  .pub-author--self {
+    color: var(--clr-text-primary);
+    font-weight: var(--fw-medium);
+  }
+
   /* Skills */
+  .skills-section {
+    margin-bottom: var(--sp-7);
+  }
+
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--sp-8);
-  }
-
-  .skills-group h3 {
-    font-size: var(--fs-2);
-    margin: 0 0 var(--sp-4);
+    gap: var(--sp-7) var(--sp-8);
   }
 
   .skills-list {
@@ -307,7 +582,7 @@ import { skills } from "../../data/cv/skills.ts";
 
   .skill-item {
     display: grid;
-    grid-template-columns: 10rem 1fr;
+    grid-template-columns: 12rem 1fr;
     align-items: center;
     gap: var(--sp-3);
   }
@@ -329,9 +604,9 @@ import { skills } from "../../data/cv/skills.ts";
     height: 100%;
     background: var(--clr-accent);
     border-radius: 2px;
-    transition: width 0.3s ease;
   }
 
+  /* Responsive */
   @media (max-width: 640px) {
     .cv-page__header {
       flex-direction: column;
@@ -342,7 +617,12 @@ import { skills } from "../../data/cv/skills.ts";
     }
 
     .skill-item {
-      grid-template-columns: 8rem 1fr;
+      grid-template-columns: 9rem 1fr;
+    }
+
+    .entry__header {
+      flex-direction: column;
+      gap: var(--sp-1);
     }
   }
 </style>

@@ -429,7 +429,7 @@ const tabs = [
 
 <style>
   .cv-page {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: var(--sp-7) var(--sp-5);
   }
@@ -488,7 +488,10 @@ const tabs = [
   .cv-tabs {
     display: flex;
     gap: 0;
-    border-bottom: 1px solid var(--clr-border-subtle);
+    background-image: linear-gradient(var(--clr-border-subtle), var(--clr-border-subtle));
+    background-size: 100% 1px;
+    background-position: bottom;
+    background-repeat: no-repeat;
     margin-bottom: var(--sp-6);
     overflow-x: auto;
     scrollbar-width: none;
@@ -508,7 +511,6 @@ const tabs = [
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
     cursor: pointer;
     white-space: nowrap;
     transition:
@@ -715,7 +717,7 @@ const tabs = [
   }
 
   .skill-item__fill {
-    height: 100%;
+    height: 3px;
     background: var(--clr-accent);
     border-radius: 2px;
   }

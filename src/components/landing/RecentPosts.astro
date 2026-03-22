@@ -1,0 +1,117 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+{
+  posts.length > 0 && (
+    <section class="recent-posts">
+      <div class="recent-posts__inner">
+        <h2 class="recent-posts__heading">Recent writing</h2>
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li class="post-list__item">
+              <a href={`/blog/${post.slug}/`} class="post-list__link">
+                <span class="post-list__title">{post.data.title}</span>
+                <time
+                  class="post-list__date"
+                  datetime={post.data.publishedAt.toISOString()}
+                >
+                  {formatDate(post.data.publishedAt)}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/blog/" class="view-all">
+          All posts →
+        </a>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .recent-posts {
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .recent-posts__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .recent-posts__heading {
+    font-size: var(--fs-3);
+    margin: 0 0 var(--sp-6);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--sp-5);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-list__item {
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  .post-list__item:first-child {
+    border-top: 1px solid var(--clr-border-subtle);
+  }
+
+  .post-list__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sp-4) 0;
+    text-decoration: none;
+    color: var(--clr-text-primary);
+    gap: var(--sp-4);
+    transition: color 0.15s ease;
+  }
+
+  .post-list__link:hover .post-list__title {
+    color: var(--clr-accent);
+  }
+
+  .post-list__title {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-medium);
+    transition: color 0.15s ease;
+  }
+
+  .post-list__date {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    flex-shrink: 0;
+  }
+
+  .view-all {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.15s ease;
+  }
+
+  .view-all:hover {
+    color: var(--clr-text-primary);
+  }
+</style>

@@ -1,0 +1,151 @@
+---
+import { main } from "../../data/main.ts";
+---
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <p class="hero__label">Hello, I'm</p>
+      <h1 class="hero__name">{main.handle}</h1>
+      <p class="hero__full-name">{main.full_name}</p>
+      <p class="hero__tagline">{main.title}</p>
+      <p class="hero__bio">
+        Building software, making music and producing videos no
+        one ever watches or cares about.
+      </p>
+      <div class="hero__actions">
+        <a
+          href="/cv.pdf"
+          download="Serhii_Yahdzhyiev_CV.pdf"
+          class="btn btn--primary"
+        >
+          Download CV
+        </a>
+        <a href="/blog/" class="btn btn--ghost">Read blog</a>
+      </div>
+    </div>
+    <div class="hero__portrait">
+      <img
+        src="/portrait.png"
+        alt="Portrait of Serhii Yahdzhyiev"
+        width="320"
+        height="320"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: var(--sp-8) var(--sp-5);
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  .hero__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--sp-8);
+    align-items: center;
+  }
+
+  .hero__label {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero__name {
+    font-size: var(--fs-6);
+    line-height: 1;
+    margin: 0 0 var(--sp-2);
+    letter-spacing: -0.02em;
+  }
+
+  .hero__full-name {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-1);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero__tagline {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin-bottom: var(--sp-5);
+  }
+
+  .hero__bio {
+    max-width: 52ch;
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    margin-bottom: var(--sp-6);
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+
+  .hero__portrait img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--clr-border-subtle);
+    filter: grayscale(20%);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 0.6em 1.2em;
+    border-radius: var(--rd-md);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease;
+    cursor: pointer;
+  }
+
+  .btn--primary {
+    background: var(--clr-accent);
+    color: var(--clr-bg-body);
+    border: 1px solid var(--clr-accent);
+  }
+
+  .btn--primary:hover {
+    opacity: 0.85;
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--clr-text-primary);
+    border: 1px solid var(--clr-border-strong);
+  }
+
+  .btn--ghost:hover {
+    background: var(--clr-surface-1);
+  }
+
+  @media (max-width: 768px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__portrait {
+      display: none;
+    }
+  }
+</style>

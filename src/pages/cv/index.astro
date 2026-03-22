@@ -22,7 +22,6 @@ const tabs = [
   description="Background, experience, and skills of Serhii Yahdzhyiev."
 >
   <div class="cv-page">
-
     <header class="cv-page__header">
       <div class="cv-page__intro">
         <h1>{main.full_name}</h1>
@@ -56,15 +55,17 @@ const tabs = [
 
     <!-- Tab bar -->
     <nav class="cv-tabs" aria-label="CV sections">
-      {tabs.map((tab, i) => (
-        <button
-          class:list={["cv-tab", { "cv-tab--active": i === 0 }]}
-          data-tab={tab.id}
-          aria-selected={i === 0 ? "true" : "false"}
-        >
-          {tab.label}
-        </button>
-      ))}
+      {
+        tabs.map((tab, i) => (
+          <button
+            class:list={["cv-tab", { "cv-tab--active": i === 0 }]}
+            data-tab={tab.id}
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            {tab.label}
+          </button>
+        ))
+      }
     </nav>
 
     <!-- Bio -->
@@ -86,109 +87,125 @@ const tabs = [
           and digitalize complex processes.
         </p>
       </div>
-
-      <h2 class="cv-section-heading">Soft Skills</h2>
-      <ul class="soft-skills-list">
-        {skills.soft.map((s) => <li>{s}</li>)}
-      </ul>
     </div>
 
     <!-- Experience -->
     <div data-panel="experience" class="cv-panel" hidden>
       <ul class="entry-list">
-        {experience.map((item) => (
-          <li class="entry">
-            <div class="entry__header">
-              <div>
-                <h3 class="entry__title">{item.title}</h3>
-                <span class="entry__sub">{item.company}</span>
+        {
+          experience.map((item) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">{item.title}</h3>
+                  <span class="entry__sub">{item.company}</span>
+                </div>
+                <span class="entry__period">{item.period}</span>
               </div>
-              <span class="entry__period">{item.period}</span>
-            </div>
-            {item.list && item.list.length > 0 && (
-              <ul class="entry__list">
-                {item.list.map((point) => <li>{point}</li>)}
-              </ul>
-            )}
-          </li>
-        ))}
+              {item.list && item.list.length > 0 && (
+                <ul class="entry__list">
+                  {item.list.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <!-- Projects -->
     <div data-panel="projects" class="cv-panel" hidden>
       <ul class="entry-list">
-        {projects.map((project) => (
-          <li class="entry">
-            <div class="entry__header">
-              <div>
-                <h3 class="entry__title">
-                  {project.title}
-                  {project.tags.map((tag) => (
-                    <span class="entry__tag">{tag}</span>
-                  ))}
-                </h3>
-                <span class="entry__sub">{project.organization}</span>
+        {
+          projects.map((project) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">
+                    {project.title}
+                    {project.tags.map((tag) => (
+                      <span class="entry__tag">{tag}</span>
+                    ))}
+                  </h3>
+                  <span class="entry__sub">{project.organization}</span>
+                </div>
+                <span class="entry__period">{project.period}</span>
               </div>
-              <span class="entry__period">{project.period}</span>
-            </div>
-            <ul class="entry__list">
-              {project.list.map((point) => <li>{point}</li>)}
-            </ul>
-            <p class="entry__tools">
-              <span class="entry__tools-label">Tools:</span>
-              {project.tools.join(" · ")}
-            </p>
-          </li>
-        ))}
+              <ul class="entry__list">
+                {project.list.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+              <p class="entry__tools">
+                <span class="entry__tools-label">Tools:</span>
+                {project.tools.join(" · ")}
+              </p>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <!-- Education -->
     <div data-panel="education" class="cv-panel" hidden>
       <ul class="entry-list">
-        {education.map((item) => (
-          <li class="entry">
-            <div class="entry__header">
-              <div>
-                <h3 class="entry__title">{item.institution}</h3>
-                <span class="entry__sub">{item.degree}</span>
-                <span class="entry__location">{item.location}</span>
+        {
+          education.map((item) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">{item.institution}</h3>
+                  <span class="entry__sub">{item.degree}</span>
+                  <span class="entry__location">{item.location}</span>
+                </div>
+                <span class="entry__period">{item.period}</span>
               </div>
-              <span class="entry__period">{item.period}</span>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <!-- Skills -->
     <div data-panel="skills" class="cv-panel" hidden>
       <div class="skills-section">
+        <h2 class="cv-section-heading">Soft Skills</h2>
+        <ul class="soft-skills-list">
+          {skills.soft.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+
+      <div class="skills-section">
         <h2 class="cv-section-heading">Frontend</h2>
         <ul class="skills-list">
-          {skills.frontend.map((s) => (
-            <li class="skill-item">
-              <span class="skill-item__name">{s.title}</span>
-              <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                <div class="skill-item__fill" style={`width: ${s.level}%`} />
-              </div>
-            </li>
-          ))}
+          {
+            skills.frontend.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="skills-section">
         <h2 class="cv-section-heading">Backend</h2>
         <ul class="skills-list">
-          {skills.backend.map((s) => (
-            <li class="skill-item">
-              <span class="skill-item__name">{s.title}</span>
-              <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                <div class="skill-item__fill" style={`width: ${s.level}%`} />
-              </div>
-            </li>
-          ))}
+          {
+            skills.backend.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
@@ -196,66 +213,91 @@ const tabs = [
         <div>
           <h2 class="cv-section-heading">System Engineering / HPC</h2>
           <ul class="skills-list">
-            {skills.systems.map((s) => (
-              <li class="skill-item">
-                <span class="skill-item__name">{s.title}</span>
-                <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
-              </li>
-            ))}
+            {
+              skills.systems.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div>
           <h2 class="cv-section-heading">DevOps & Processes</h2>
           <ul class="skills-list">
-            {skills.devops.map((s) => (
-              <li class="skill-item">
-                <span class="skill-item__name">{s.title}</span>
-                <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
-              </li>
-            ))}
+            {
+              skills.devops.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div>
           <h2 class="cv-section-heading">QA & Testing</h2>
           <ul class="skills-list">
-            {skills.qa.map((s) => (
-              <li class="skill-item">
-                <span class="skill-item__name">{s.title}</span>
-                <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
-              </li>
-            ))}
+            {
+              skills.qa.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div>
           <h2 class="cv-section-heading">Musical</h2>
           <ul class="skills-list">
-            {skills.musical.map((s) => (
-              <li class="skill-item">
-                <span class="skill-item__name">{s.title}</span>
-                <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
-              </li>
-            ))}
+            {
+              skills.musical.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div>
           <h2 class="cv-section-heading">Languages</h2>
           <ul class="skills-list">
-            {skills.languages.map((s) => (
-              <li class="skill-item">
-                <span class="skill-item__name">{s.title}</span>
-                <div class="skill-item__bar" aria-label={`${s.level}%`}>
-                  <div class="skill-item__fill" style={`width: ${s.level}%`} />
-                </div>
-              </li>
-            ))}
+            {
+              skills.languages.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
@@ -264,31 +306,42 @@ const tabs = [
     <!-- Publications -->
     <div data-panel="publications" class="cv-panel" hidden>
       <ul class="entry-list">
-        {publications.map((pub) => (
-          <li class="entry">
-            <div class="entry__header">
-              <div>
-                <h3 class="entry__title">
-                  {pub.url
-                    ? <a href={pub.url} target="_blank" rel="noreferrer">{pub.title}</a>
-                    : pub.title}
-                </h3>
-                <p class="entry__authors">
-                  {pub.authors.map((a, i) => (
-                    <span class:list={["pub-author", { "pub-author--self": a === main.full_name }]}>
-                      {a}{i < pub.authors.length - 1 ? ", " : ""}
-                    </span>
-                  ))}
-                </p>
-                {pub.venue && <span class="entry__sub">{pub.venue}</span>}
+        {
+          publications.map((pub) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">
+                    {pub.url ? (
+                      <a href={pub.url} target="_blank" rel="noreferrer">
+                        {pub.title}
+                      </a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
+                  <p class="entry__authors">
+                    {pub.authors.map((a, i) => (
+                      <span
+                        class:list={[
+                          "pub-author",
+                          { "pub-author--self": a === main.full_name },
+                        ]}
+                      >
+                        {a}
+                        {i < pub.authors.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </p>
+                  {pub.venue && <span class="entry__sub">{pub.venue}</span>}
+                </div>
+                <span class="entry__period">{pub.year}</span>
               </div>
-              <span class="entry__period">{pub.year}</span>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        }
       </ul>
     </div>
-
   </div>
 </Page>
 
@@ -378,7 +431,7 @@ const tabs = [
     display: flex;
     gap: 0;
     border-bottom: 1px solid var(--clr-border-subtle);
-    margin-bottom: var(--sp-8);
+    margin-bottom: var(--sp-6);
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -400,7 +453,9 @@ const tabs = [
     margin-bottom: -1px;
     cursor: pointer;
     white-space: nowrap;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
   }
 
   .cv-tab:hover {
@@ -418,8 +473,14 @@ const tabs = [
   }
 
   @keyframes panel-in {
-    from { opacity: 0; transform: translateY(4px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Bio */

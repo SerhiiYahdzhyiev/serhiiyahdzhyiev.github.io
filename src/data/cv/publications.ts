@@ -1,7 +1,8 @@
 export const publications = [
   {
     year: 2025,
-    title: "On the Usability and Energy Efficiency of High-Level Synthesis for FPGA-based Network-Attached Accelerators",
+    title:
+      "On the Usability and Energy Efficiency of High-Level Synthesis for FPGA-based Network-Attached Accelerators",
     authors: [
       "Steffen Christgau",
       "Dylan Everingham",

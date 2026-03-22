@@ -7,18 +7,18 @@ developer and musician/producer. Built with Astro, deployed to GitHub Pages.
 
 ## Stack
 
-| Concern | Choice |
-|---|---|
-| Framework | [Astro](https://astro.build) 5.x — static output |
-| Styling | SCSS + CSS custom properties + UnoCSS (`preset-mini`) |
-| Interactive UI | React 19 — used only where state is needed (audio player) |
-| Language | TypeScript strict mode |
-| Package manager | **yarn** (do not use npm or pnpm) |
-| Node version | Managed via nvm — see `.nvmrc` |
-| Fonts | Local files in `public/fonts/` + `@fontsource/fraunces` |
-| Images | `astro:assets` `<Picture>` — AVIF + WebP at build time |
-| Hosting | GitHub Pages (static, `output: 'static'`) |
-| Content | Astro Content Collections (blog posts as `.md`) |
+| Concern         | Choice                                                    |
+| --------------- | --------------------------------------------------------- |
+| Framework       | [Astro](https://astro.build) 5.x — static output          |
+| Styling         | SCSS + CSS custom properties + UnoCSS (`preset-mini`)     |
+| Interactive UI  | React 19 — used only where state is needed (audio player) |
+| Language        | TypeScript strict mode                                    |
+| Package manager | **yarn** (do not use npm or pnpm)                         |
+| Node version    | Managed via nvm — see `.nvmrc`                            |
+| Fonts           | Local files in `public/fonts/` + `@fontsource/fraunces`   |
+| Images          | `astro:assets` `<Picture>` — AVIF + WebP at build time    |
+| Hosting         | GitHub Pages (static, `output: 'static'`)                 |
+| Content         | Astro Content Collections (blog posts as `.md`)           |
 
 ---
 
@@ -111,14 +111,14 @@ public/
 
 ## Pages
 
-| Route | File | Description |
-|---|---|---|
-| `/` | `pages/index.astro` | Hero with name, tagline, bio, CTA buttons |
-| `/blog/` | `pages/blog/index.astro` | Blog post list, sorted by date |
-| `/blog/[slug]/` | `pages/blog/[...slug].astro` | Individual post with read time |
-| `/music/` | `pages/music/index.astro` | Audio player (React) with self-hosted tracks |
-| `/videos/` | `pages/videos/index.astro` | YouTube embed grid |
-| `/cv/` | `pages/cv/index.astro` | Full bio, experience, education, skills + CV download |
+| Route           | File                         | Description                                           |
+| --------------- | ---------------------------- | ----------------------------------------------------- |
+| `/`             | `pages/index.astro`          | Hero with name, tagline, bio, CTA buttons             |
+| `/blog/`        | `pages/blog/index.astro`     | Blog post list, sorted by date                        |
+| `/blog/[slug]/` | `pages/blog/[...slug].astro` | Individual post with read time                        |
+| `/music/`       | `pages/music/index.astro`    | Audio player (React) with self-hosted tracks          |
+| `/videos/`      | `pages/videos/index.astro`   | YouTube embed grid                                    |
+| `/cv/`          | `pages/cv/index.astro`       | Full bio, experience, education, skills + CV download |
 
 ---
 
@@ -126,11 +126,11 @@ public/
 
 ### Fonts
 
-| Role | Family | Token |
-|---|---|---|
-| Display / headings | Fraunces (serif) | `--ff-display` |
-| Body | Archivo (sans-serif) | `--ff-sans` |
-| Monospace / labels | Inconsolata | `--ff-mono` |
+| Role               | Family               | Token          |
+| ------------------ | -------------------- | -------------- |
+| Display / headings | Fraunces (serif)     | `--ff-display` |
+| Body               | Archivo (sans-serif) | `--ff-sans`    |
+| Monospace / labels | Inconsolata          | `--ff-mono`    |
 
 Fraunces is installed as an npm package (`@fontsource/fraunces`) and imported
 in `typo.css`. Archivo and Inconsolata are local files in `public/fonts/` loaded
@@ -200,6 +200,7 @@ title, description, and year.
 ### CV data
 
 Edit the files in `src/data/cv/`:
+
 - `experience.ts` — work history
 - `education.ts` — education entries
 - `skills.ts` — skill groups with proficiency levels (0–100)
@@ -225,7 +226,7 @@ folder to the `gh-pages` branch.
 The live site URL is configured in `astro.config.ts`:
 
 ```ts
-site: "https://serhiiyahdzhyiev.github.io"
+site: "https://serhiiyahdzhyiev.github.io";
 ```
 
 If the site moves to a custom domain, update `site` (and remove or adjust

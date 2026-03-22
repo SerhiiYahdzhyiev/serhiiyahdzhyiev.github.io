@@ -9,40 +9,92 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Landing page with hero section, section navigation cards, recent blog posts, and social links
-- Blog section: index page and individual post layout with read time estimation
-- Music page with interactive React-based audio player (playlist, seek, volume control)
-- Videos page with responsive YouTube embed grid
+- `Portrait.astro` component using `astro:assets` `<Picture>` for build-time
+  image optimisation (AVIF + WebP variants at 1× and 2× widths)
+- `Hero.astro` and `RecentPosts.astro` extracted as focused compound components
+  under `src/components/landing/`
+- `SocialLinks.astro` shared component for social icon links
+- Responsive hamburger navigation: collapses to a flat icon button on mobile
+  (≤ 768 px), opens as a positioned dropdown anchored to the left edge;
+  closes on link click
+
+- Landing page with hero section, section navigation cards, recent blog posts,
+  and social links
+- Blog section: index page and individual post layout with read-time estimation
+- Music page with interactive React-based audio player (playlist, seek, volume)
+- Videos page with responsive YouTube embed grid (lazy-loaded iframes)
 - Bio / CV page with full experience, education, and skills sections
-- CV PDF download button on landing page and bio page (`/cv.pdf`)
-- Content collections for blog posts and music tracks (Astro Content Collections)
+- CV PDF available at `/cv.pdf`; download link on bio page
+- Astro Content Collections for blog posts (`type: content`) and music tracks
+  (`type: data`)
 - Sample blog post ("Hello, World")
-- Dark/light mode with system preference detection and manual toggle (persisted to `localStorage`)
+- Dark / light mode: system-preference default, manual toggle persisted to
+  `localStorage`, flash-of-wrong-theme prevented by inline bootstrap script
+  in `<head>`
 - `ThemeToggle` component in the header
-- Warm minimal color palette (off-white light / near-black dark) with CSS custom property tokens
-- Fraunces display font for headings (via `@fontsource/fraunces`)
+- Warm minimal colour palette — off-white light / near-black dark — defined
+  entirely as CSS custom property tokens in `src/styles/tokens/color.css`
+- Fraunces display font for headings (via `@fontsource/fraunces`); Archivo
+  (sans) and Inconsolata (mono) loaded from local `public/fonts/`
 - Sticky header with wordmark, navigation, and theme toggle
-- Footer with social icon links (GitHub, YouTube, SoundCloud, email)
+- Footer with inline SVG social icons (GitHub, YouTube, SoundCloud, email)
 - React integration (`@astrojs/react`) for interactive components
 - `Page.astro` and `BlogPost.astro` reusable layouts
-- Updated `base.astro` with Open Graph meta tags and dark mode bootstrap script
-- `src/data/main.ts` with site owner info and social links
-- `src/data/videos.ts` for managing video entries
+- `base.astro` with Open Graph / Twitter meta tags and dark-mode bootstrap
+  script
+- `src/data/main.ts` — site owner info and social links (single source of
+  truth used by header, footer, hero, and CV page)
+- `src/data/videos.ts` — video entries config
+- `src/data/cv/` — structured CV data (experience, education, skills)
 - Sitemap integration (`@astrojs/sitemap`)
 - `robots.txt`
-
 - ESLint (flat config) with `typescript-eslint`, `eslint-plugin-astro`,
-  `eslint-plugin-react`, and `eslint-plugin-react-hooks`
-- Prettier with `prettier-plugin-astro`; line length capped at 79 characters
-- `lint`, `lint:fix`, `format`, and `format:check` scripts in `package.json`
+  `eslint-plugin-react`, `eslint-plugin-react-hooks`
+- Prettier with `prettier-plugin-astro`; line length 79 characters
+- `lint`, `lint:fix`, `format`, `format:check` scripts in `package.json`
 
 ### Changed
 
-- Replaced previous colorful blue palette with refined warm minimal tokens
-- Updated `Header.astro` to use sticky layout with wordmark + nav + theme toggle
-- Updated `Footer.astro` with inline SVG social icons (removed Font Awesome dependency)
-- Updated `Navigation.astro` with all v0.1.0 routes and active-link highlighting
-- Cleaned up `layout.scss` (removed legacy header/footer rules now handled in components)
-- Updated `base.scss` to flex-column body layout and proper dark mode color-scheme
-- `h1`/`h2` now use the Fraunces display font via typography tokens
-- Deploy workflow updated to use `npm ci` for reproducible CI installs
+- Replaced previous blue palette with refined warm minimal tokens
+- `Footer.astro` rebuilt with inline SVG icons (removed Font Awesome
+  dependency)
+- `Navigation.astro` updated with all v0.1.0 routes and active-link
+  highlighting
+- `base.scss` updated to flex-column body layout with dark-mode `color-scheme`
+- `h1` / `h2` use Fraunces display font via typography tokens
+- Deploy workflow (`deploy.yaml`) updated to use `npm ci` for reproducible CI
+  installs
+
+- Landing page decomposed — `index.astro` is now a thin composition file;
+  all markup and styles live in dedicated components
+- Removed redundant section cards from landing (Music / Videos / Blog
+  already
+  in header navigation)
+- Removed social-link row from landing page body; social icons consolidated
+  into the footer only
+- Hero CTA buttons changed from "Download CV" to navigational links:
+  **Bio & CV** (`/cv/`), **Music** (`/music/`), **Blog** (`/blog/`)
+- Hero `[SY]` heading now uses `--ff-mono` (Inconsolata) bold, matching the
+  header wordmark
+- Portrait frame changed from circle to rounded rectangle (`--rd-lg`) with a
+  subtle box shadow instead of a border
+- Header wordmark `[SY]` hidden on the home page via `visibility: hidden`
+  (space is preserved so navigation stays centred)
+- Portrait hidden on mobile to keep the landing minimal
+- Burger button placed on the left side of the header on mobile; flat style
+  (no border, no background)
+- Navigation order updated: Home · Bio · Blog · Music · Videos
+- Footer LinkedIn icon added (was missing from original set)
+
+### Fixed
+
+- Theme toggle icon swap corrected: moon shown in **light** mode
+  (hint: switch to dark), sun shown in **dark** mode
+  (hint: switch to light)
+- Theme toggle icon invisible in dark mode — root cause:
+  `:global(:not(.dark))` matched every ancestor without the class
+  (e.g. `<body>`), hiding both icons simultaneously;
+  fixed to `html:not(.dark)` / `html.dark`
+- Landing page exceeding viewport height after removing recent posts
+  section; fixed by replacing `min-height: 100svh` on `.landing` with
+  `flex: 1`

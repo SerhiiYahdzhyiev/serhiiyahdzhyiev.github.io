@@ -1,5 +1,6 @@
 ---
 import { main } from "../../data/main.ts";
+import Portrait from "../Portrait.astro";
 ---
 
 <section class="hero">
@@ -19,15 +20,7 @@ import { main } from "../../data/main.ts";
         <a href="/blog/" class="btn btn--ghost">Blog</a>
       </div>
     </div>
-    <div class="hero__portrait">
-      <img
-        src="/portrait.png"
-        alt="Portrait of Serhii Yahdzhyiev"
-        width="320"
-        height="320"
-        loading="eager"
-      />
-    </div>
+    <Portrait />
   </div>
 </section>
 
@@ -56,10 +49,12 @@ import { main } from "../../data/main.ts";
   }
 
   .hero__name {
+    font-family: var(--ff-mono);
     font-size: var(--fs-6);
     line-height: 1;
     margin: 0 0 var(--sp-2);
     letter-spacing: -0.02em;
+    font-weight: var(--fw-bold);
   }
 
   .hero__full-name {
@@ -87,15 +82,6 @@ import { main } from "../../data/main.ts";
     align-items: center;
     gap: var(--sp-3);
     flex-wrap: wrap;
-  }
-
-  .hero__portrait img {
-    width: 220px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid var(--clr-border-subtle);
-    filter: grayscale(20%);
   }
 
   .btn {

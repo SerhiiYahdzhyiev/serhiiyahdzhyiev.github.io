@@ -1,41 +1,348 @@
 ---
-import CVLayout from "../../layouts/cv.astro";
+import Page from "../../layouts/Page.astro";
+import { main } from "../../data/main.ts";
+import { experience } from "../../data/cv/experience.ts";
+import { education } from "../../data/cv/education.ts";
+import { skills } from "../../data/cv/skills.ts";
 ---
-<CVLayout title="SY | Bio">
-  <section>
-    <h2>Bio</h2>
-    <h3>Bio Subtitle</h3>
-    <p>
-      Born on November 11<sup>th</sup>, 1994 in Dnipro(UA). Got basic
-      education at Dnipro's General (elementary, middle and high combined)
-      School #22. In 2012 went to Odessa(UA) to get musical education at
-      Odessa National College of Arts and Culture. Graduated in 2016.
-    </p>
-    <h4>Heading 4</h4>
-    <p>
-      The same year started the mandatory military service period (18 month)
-      in Lviv(UA). Served as a gunner in Ukrainian National Guard
-      (Military Police). Carried out escorting and guarding defendants and
-      convicts in the courtrooms as part of the guard. Was transferred to
-      the reserve in December 2017.
-    </p>
-    <h5>Heading 5</h5>
-    <p>
-      In 2018 moved back to Odessa, worked as freelance musician doing
-      gigs and cruse ship contracts. With the start of global COVID-19
-      pandemic changed occupation. Starting from July 2020 became member
-      of Periodix.Net team as a lead generation specialist.
-      In March 2021 got the position of Junior Front-End Developer in the
-      same company.
-    </p>
-    <p>
-      From September 2022 entered GISMA University of Applied Science
-      to complete Bachelors Degree of Software Engineering.
-    </p>
-    <p>
-      From March 2023 started working as Full-Stack Software Engineer
-      (Working Student) at PERFACCT GmbH located in Potsdam (Brandenburg,
-      Germany).
-    </p>
-  </section>
-</CVLayout>
+
+<Page
+  title="Bio — SY"
+  description="Background, experience, and skills of Serhii Yahdzhyiev."
+>
+  <div class="cv-page">
+    <header class="cv-page__header">
+      <div class="cv-page__intro">
+        <h1>{main.full_name}</h1>
+        <p class="cv-page__title">{main.title}</p>
+        <p class="cv-page__location">{main.location}</p>
+      </div>
+      <a
+        href="/cv.pdf"
+        download="Serhii_Yahdzhyiev_CV.pdf"
+        class="cv-download-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" x2="12" y1="15" y2="3"></line>
+        </svg>
+        Download CV
+      </a>
+    </header>
+
+    <div class="cv-page__bio">
+      <p>
+        Born 1994 in Dnipro, Ukraine. Graduated from Odessa National College of
+        Arts and Culture in 2016. After a period of military service and a
+        career as a cruise ship musician, pivoted to software development in
+        2021. Currently completing a Bachelor's degree in Software Engineering
+        at GISMA University (Potsdam, Germany) while working as a Full-Stack
+        Software Engineer.
+      </p>
+    </div>
+
+    <section class="cv-section">
+      <h2>Experience</h2>
+      <ul class="experience-list">
+        {
+          experience.map((item) => (
+            <li class="experience-item">
+              <div class="experience-item__header">
+                <div>
+                  <h3 class="experience-item__title">{item.title}</h3>
+                  <span class="experience-item__company">{item.company}</span>
+                </div>
+                <span class="experience-item__period">{item.period}</span>
+              </div>
+              {item.list && item.list.length > 0 && (
+                <ul class="experience-item__list">
+                  {item.list.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-section">
+      <h2>Education</h2>
+      <ul class="experience-list">
+        {
+          education.map((item) => (
+            <li class="experience-item">
+              <div class="experience-item__header">
+                <div>
+                  <h3 class="experience-item__title">{item.title}</h3>
+                  <span class="experience-item__company">{item.degree}</span>
+                </div>
+                <span class="experience-item__period">{item.period}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-group">
+          <h3>Development</h3>
+          <ul class="skills-list">
+            {
+              skills.development.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="skills-group">
+          <h3>Musical</h3>
+          <ul class="skills-list">
+            {
+              skills.musical.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+          <h3 style="margin-top: var(--sp-6)">Languages</h3>
+          <ul class="skills-list">
+            {
+              skills.languages.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div class="skill-item__bar" aria-label={`${s.level}%`}>
+                    <div
+                      class="skill-item__fill"
+                      style={`width: ${s.level}%`}
+                    />
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</Page>
+
+<style>
+  .cv-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .cv-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-6);
+    margin-bottom: var(--sp-7);
+    padding-bottom: var(--sp-6);
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  .cv-page__header h1 {
+    font-size: var(--fs-4);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .cv-page__title {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .cv-page__location {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    margin: 0;
+  }
+
+  .cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 0.6em 1.2em;
+    background: var(--clr-accent);
+    color: var(--clr-bg-body);
+    border: 1px solid var(--clr-accent);
+    border-radius: var(--rd-md);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .cv-download-btn:hover {
+    opacity: 0.85;
+  }
+
+  .cv-page__bio {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    max-width: 65ch;
+    margin-bottom: var(--sp-8);
+  }
+
+  /* Sections */
+  .cv-section {
+    margin-bottom: var(--sp-8);
+  }
+
+  .cv-section h2 {
+    font-size: var(--fs-3);
+    margin: 0 0 var(--sp-6);
+    padding-bottom: var(--sp-3);
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  /* Experience */
+  .experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .experience-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);
+  }
+
+  .experience-item__title {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-semibold);
+    color: var(--clr-text-primary);
+    margin: 0 0 var(--sp-1);
+  }
+
+  .experience-item__company {
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+  }
+
+  .experience-item__period {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .experience-item__list {
+    list-style: disc;
+    padding-left: var(--sp-5);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-8);
+  }
+
+  .skills-group h3 {
+    font-size: var(--fs-2);
+    margin: 0 0 var(--sp-4);
+  }
+
+  .skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .skill-item {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+
+  .skill-item__name {
+    font-size: var(--fs-0);
+    color: var(--clr-text-secondary);
+    white-space: nowrap;
+  }
+
+  .skill-item__bar {
+    height: 3px;
+    background: var(--clr-border-subtle);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-item__fill {
+    height: 100%;
+    background: var(--clr-accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  @media (max-width: 640px) {
+    .cv-page__header {
+      flex-direction: column;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skill-item {
+      grid-template-columns: 8rem 1fr;
+    }
+  }
+</style>

@@ -1,22 +1,9 @@
 ---
-import Head from "../components/Head.astro";
-import Header from "../components/Header.astro";
-import Main from "../components/Main.astro";
-import Footer from "../components/Footer.astro";
+import Page from "./Page.astro";
 
-const {title} = Astro.props;
+const { title } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <Head title={title}/>
-  </head>
-  <body>
-    <Header/>
-    <main>
-      <slot/>
-    </main>
-    <Footer/>
-  </body>
-</html>
+<Page title={title}>
+  <slot />
+</Page>

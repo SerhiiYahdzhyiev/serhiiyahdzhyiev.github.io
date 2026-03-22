@@ -1,87 +1,87 @@
 export const skills = {
   musical: [
     {
-      title: 'Sound Production',
+      title: "Sound Production",
       level: 70,
     },
     {
-      title: 'Composition & Arrangement',
+      title: "Composition & Arrangement",
       level: 70,
     },
     {
-      title: 'Keys',
+      title: "Keys",
       level: 50,
     },
     {
-      title: 'Guitar/Bass',
+      title: "Guitar/Bass",
       level: 70,
     },
     {
-      title: 'Drums & Percussion',
+      title: "Drums & Percussion",
       level: 80,
     },
   ],
   development: [
     {
-      title: 'JavaScript/TypeScript',
+      title: "JavaScript/TypeScript",
       level: 90,
     },
     {
-      title: 'Python',
+      title: "Python",
       level: 90,
     },
     {
-      title: 'C',
+      title: "C",
       level: 70,
     },
     {
-      title: 'Bash',
+      title: "Bash",
       level: 60,
     },
     {
-      title: 'HTML/CSS',
+      title: "HTML/CSS",
       level: 90,
     },
     {
-      title: 'MongoDB',
+      title: "MongoDB",
       level: 70,
     },
     {
-      title: 'PostgresQL',
+      title: "PostgresQL",
       level: 70,
     },
     {
-      title: 'Node.js',
+      title: "Node.js",
       level: 70,
     },
     {
-      title: 'Angular',
+      title: "Angular",
       level: 50,
     },
     {
-      title: 'React',
+      title: "React",
       level: 70,
     },
     {
-      title: 'Vue',
+      title: "Vue",
       level: 70,
     },
   ],
   languages: [
     {
-      title: 'German',
+      title: "German",
       level: 40,
     },
     {
-      title: 'English',
+      title: "English",
       level: 90,
     },
     {
-      title: 'Russian',
+      title: "Russian",
       level: 100,
     },
     {
-      title: 'Ukrainian',
+      title: "Ukrainian",
       level: 100,
     },
   ],

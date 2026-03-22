@@ -1,14 +1,60 @@
 ---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/music/", label: "Music" },
+  { href: "/videos/", label: "Videos" },
+  { href: "/cv/", label: "Bio" },
+];
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+}
 ---
-<ul class="flex gap-2">
-  <li>
-    <a href="/">
-      Home
-    </a>
-  </li>
-  <li>
-    <a href="/cv/">
-      Bio
-    </a>
-  </li>
-</ul>
+
+<nav class="nav" aria-label="Main navigation">
+  <ul class="nav__list">
+    {
+      navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={["nav__link", { "nav__link--active": isActive(href) }]}
+            aria-current={isActive(href) ? "page" : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav__link {
+    font-size: var(--fs-0);
+    font-family: var(--ff-mono);
+    text-decoration: none;
+    color: var(--clr-text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+  }
+
+  .nav__link:hover,
+  .nav__link--active {
+    color: var(--clr-text-primary);
+  }
+</style>

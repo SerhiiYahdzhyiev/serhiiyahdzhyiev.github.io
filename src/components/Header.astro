@@ -1,13 +1,49 @@
 ---
-import Portrait from "./Portrait.astro";
-
 import Navigation from "./Navigation.astro";
-
-import {main} from "../data/main.ts";
+import ThemeToggle from "./layout/ThemeToggle.astro";
+import { main } from "../data/main.ts";
 ---
 
-<header>
-  <div class="flex items-center justify-between">
-    <Navigation/>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__wordmark" aria-label="Home">
+      {main.handle}
+    </a>
+    <Navigation />
+    <ThemeToggle />
   </div>
 </header>
+
+<style>
+  .site-header {
+    background-color: var(--clr-bg-header);
+    border-bottom: 1px solid var(--clr-border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-header__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--sp-4) var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-5);
+  }
+
+  .site-header__wordmark {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-2);
+    font-weight: var(--fw-bold);
+    color: var(--clr-text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .site-header__wordmark:hover {
+    color: var(--clr-accent);
+  }
+</style>

@@ -1,0 +1,157 @@
+---
+import Page from "./Page.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  tags?: string[];
+  readTime?: number;
+}
+
+const {
+  title,
+  description,
+  publishedAt,
+  updatedAt,
+  tags = [],
+  readTime,
+} = Astro.props;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<Page title={`${title} — SY Blog`} description={description}>
+  <article class="blog-post">
+    <header class="blog-post__header">
+      <div class="blog-post__meta">
+        <time datetime={publishedAt.toISOString()} class="blog-post__date">
+          {formatDate(publishedAt)}
+        </time>
+        {
+          readTime && (
+            <span class="blog-post__read-time">{readTime} min read</span>
+          )
+        }
+        {
+          updatedAt && (
+            <span class="blog-post__updated">
+              Updated {formatDate(updatedAt)}
+            </span>
+          )
+        }
+      </div>
+      <h1 class="blog-post__title">{title}</h1>
+      <p class="blog-post__description">{description}</p>
+      {
+        tags.length > 0 && (
+          <ul class="blog-post__tags">
+            {tags.map((tag) => (
+              <li class="tag">{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="blog-post__body prose">
+      <slot />
+    </div>
+  </article>
+</Page>
+
+<style>
+  .blog-post {
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .blog-post__header {
+    margin-bottom: var(--sp-8);
+    border-bottom: 1px solid var(--clr-border-subtle);
+    padding-bottom: var(--sp-6);
+  }
+
+  .blog-post__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-4);
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+  }
+
+  .blog-post__title {
+    font-size: var(--fs-5);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .blog-post__description {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0 0 var(--sp-5);
+    line-height: var(--lh-body);
+  }
+
+  .blog-post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  :global(.tag) {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--clr-border-strong);
+    border-radius: var(--rd-sm);
+    color: var(--clr-text-muted);
+  }
+
+  .blog-post__body :global(p) {
+    margin-bottom: var(--sp-5);
+    line-height: var(--lh-body);
+  }
+
+  .blog-post__body :global(h2),
+  .blog-post__body :global(h3) {
+    margin-top: var(--sp-7);
+    margin-bottom: var(--sp-4);
+  }
+
+  .blog-post__body :global(pre) {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    background: var(--clr-bg-surface);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: var(--rd-md);
+    padding: var(--sp-5);
+    overflow-x: auto;
+    margin: var(--sp-5) 0;
+  }
+
+  .blog-post__body :global(code) {
+    font-family: var(--ff-mono);
+    font-size: 0.875em;
+    background: var(--clr-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--rd-sm);
+  }
+
+  .blog-post__body :global(pre code) {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+</style>

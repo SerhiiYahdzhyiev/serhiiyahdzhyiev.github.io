@@ -1,0 +1,75 @@
+---
+import Page from "../../layouts/Page.astro";
+import AudioPlayer from "../../components/music/AudioPlayer.tsx";
+import { getCollection } from "astro:content";
+import { main } from "../../data/main.ts";
+
+const trackEntries = await getCollection("music");
+const tracks = trackEntries.map((e) => e.data).sort((a, b) => b.year - a.year);
+---
+
+<Page
+  title="Music — SY"
+  description="Original tracks by Serhii Yahdzhyiev — self-hosted, no algorithm."
+>
+  <div class="music-page">
+    <header class="music-page__header">
+      <h1>Music</h1>
+      <p class="music-page__lead">
+        Original tracks — produced, mixed, and mastered by me. Self-hosted; no
+        algorithm decides what you hear next.
+      </p>
+      <a
+        href={main.links.soundcloud}
+        target="_blank"
+        rel="noreferrer"
+        class="music-page__soundcloud"
+      >
+        Also on SoundCloud →
+      </a>
+    </header>
+
+    <div class="music-page__player">
+      <AudioPlayer tracks={tracks} client:load />
+    </div>
+  </div>
+</Page>
+
+<style>
+  .music-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .music-page__header {
+    margin-bottom: var(--sp-7);
+  }
+
+  .music-page__header h1 {
+    font-size: var(--fs-5);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .music-page__lead {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0 0 var(--sp-4);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+  }
+
+  .music-page__soundcloud {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.15s ease;
+  }
+
+  .music-page__soundcloud:hover {
+    color: var(--clr-text-primary);
+  }
+</style>

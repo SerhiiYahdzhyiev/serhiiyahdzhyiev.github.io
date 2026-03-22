@@ -3,11 +3,11 @@ export const main = {
   handle: "[SY]",
   title: "Software Engineer & Musician",
   location: "Potsdam, Germany",
-  email: "mr.blooods@gmail.com",
+  email: "syahdzyiev@gmail.com",
   links: {
-    github: "https://github.com/SergeyYahdzhyiev",
+    github: "https://github.com/SerhiiYahdzhyiev",
     youtube: "https://www.youtube.com/channel/UC0kVfzH0_MTFu8Pkur8aHZg",
     soundcloud: "https://soundcloud.com/sy1994",
-    linkedin: "https://www.linkedin.com/in/serhii-yahdzhyiev",
+    linkedin: "https://www.linkedin.com/in/serhii-yahdzhyiev-2b948a20b/",
   },
 };

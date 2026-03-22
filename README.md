@@ -9,7 +9,7 @@ is in active development, but I hope to start it someday).
 - Set up ShadCN and/or Radix UI components.
 - Set up Meta component (for SEO and such).
 - Add public artifacts.
-   - Robots TXT.
+  - Robots TXT.
 - Reach 100 scores from Lighthouse.
 - Set up Blog (collections layouts).
 - Set up Embedded Videos Page.
@@ -19,7 +19,7 @@ is in active development, but I hope to start it someday).
 
 1. Clone this repo.
 2. (Optional but recommended) Set node version (e.g. `nvm install && nvm use`).
-3. Install dependencies with `npm ci`. 
+3. Install dependencies with `npm ci`.
 4. Lauch local dev version with: `npm run dev`.
 
 ## License

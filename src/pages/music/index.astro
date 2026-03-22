@@ -8,10 +8,7 @@ const trackEntries = await getCollection("music");
 const tracks = trackEntries.map((e) => e.data).sort((a, b) => b.year - a.year);
 ---
 
-<Page
-  title="Music — SY"
-  description="Original tracks by Serhii Yahdzhyiev"
->
+<Page title="Music — SY" description="Original tracks by Serhii Yahdzhyiev">
   <div class="music-page">
     <header class="music-page__header">
       <h1>Music</h1>

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Initial videos content populated on the Videos page
+- `Dockerfile` and `Makefile` for containerised local development (`make dev`,
+  `make build-devcontainer`, `make prune-devcontainer`)
+
 - `Portrait.astro` component using `astro:assets` `<Picture>` for build-time
   image optimisation (AVIF + WebP variants at 1× and 2× widths)
 - `Hero.astro` and `RecentPosts.astro` extracted as focused compound components
@@ -55,6 +59,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- CV page data, layout, and appearance updated
+- Blog page temporarily disabled
+- Performance and SEO improvements (asset optimisation, meta refinements)
+- Accessibility improvements on CV page
+- Accent color applied to hover effects across the UI
+- Color refinements across the UI
+
 - Replaced previous blue palette with refined warm minimal tokens
 - `Footer.astro` rebuilt with inline SVG icons (removed Font Awesome
   dependency)
@@ -87,6 +98,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Footer LinkedIn icon added (was missing from original set)
 
 ### Fixed
+
+- Progress bars appearance
+- Tabs navigation appearance on CV page
 
 - Theme toggle icon swap corrected: moon shown in **light** mode
   (hint: switch to dark), sun shown in **dark** mode

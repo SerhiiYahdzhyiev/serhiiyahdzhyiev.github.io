@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Music page: 33 tracks across 7 albums (Sessions, DB, DB2, Hop Stop I/II/III,
+  Clubs) with per-album cover art extracted from MP3 ID3 tags
+- `album` field added to music content collection schema and all track entries
+- Album-grouped track list in `AudioPlayer`: each album renders as a section
+  with cover thumbnail, name, year, and genre tags in the header
+- Album cover display in the now-playing bar
+- Download button on each track row
+- `make preview` target for production build and local preview (Lighthouse, etc.)
+- `make help` as default `make` target
+
 - Initial videos content populated on the Videos page
 - `Dockerfile` and `Makefile` for containerised local development (`make dev`,
   `make build-devcontainer`, `make prune-devcontainer`)
@@ -59,6 +69,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- `AudioPlayer` track list width expanded to full parent container width
+- `AudioPlayer` track rows simplified: year and tags moved to album header
+- Videos page content updated
 - CV page data, layout, and appearance updated
 - Blog page temporarily disabled
 - Performance and SEO improvements (asset optimisation, meta refinements)

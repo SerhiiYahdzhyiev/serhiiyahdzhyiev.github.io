@@ -25,5 +25,5 @@ export const videos: Video[] = [
     youtubeId: "zCdLzwSHTns",
     title: "[SY] - Todays Queen",
     year: 2020,
-  }
+  },
 ];

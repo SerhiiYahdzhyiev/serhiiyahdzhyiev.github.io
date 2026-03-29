@@ -273,8 +273,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
               setCurrentIdx(currentIdx + 1)
             }
             disabled={
-              currentIdx === null ||
-              currentIdx === orderedTracks.length - 1
+              currentIdx === null || currentIdx === orderedTracks.length - 1
             }
             aria-label="Next track"
           >

@@ -22,10 +22,10 @@ jobs:
           node-version: 24.12.0
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

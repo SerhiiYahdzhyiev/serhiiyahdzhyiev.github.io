@@ -1,12 +1,14 @@
 export const education = [
   {
-    title: 'Odessa National College of Arts and Culture',
-    degree: 'Junior Specialist in Musical Arts (Drums & Percussion)',
-    period: 'September 2012 - July 2016',
+    institution: "GISMA University of Applied Sciences",
+    degree: "Bachelor in Software Engineering",
+    location: "Potsdam, Germany",
+    period: "Oct 2022 — Nov 2025",
   },
   {
-    title: 'GISMA Business School (Potsdam, Germany)',
-    degree: 'Software Egineering',
-    period: 'September 2022 - November 2025',
+    institution: "State College of Arts and Culture",
+    degree: "Junior Specialist in Performance Arts (Drums and Percussion)",
+    location: "Odessa, Ukraine",
+    period: "Sept 2012 — July 2016",
   },
 ];

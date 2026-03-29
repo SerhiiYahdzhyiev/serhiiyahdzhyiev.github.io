@@ -1,9 +1,33 @@
 html {
-	font-size: 100%;
+  font-size: 100%;
+  color-scheme: light;
+
+  &.dark {
+    color-scheme: dark;
+  }
 }
 
 body {
   background-color: var(--clr-bg-body);
-  background-color: var(--clr-bg-body);
-  color: var(--clr-text-secondary);
+  color: var(--clr-text-primary);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

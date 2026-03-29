@@ -1,41 +1,757 @@
 ---
-import CVLayout from "../../layouts/cv.astro";
+import Page from "../../layouts/Page.astro";
+import { main } from "../../data/main.ts";
+import { experience } from "../../data/cv/experience.ts";
+import { education } from "../../data/cv/education.ts";
+import { skills } from "../../data/cv/skills.ts";
+import { projects } from "../../data/cv/projects.ts";
+import { publications } from "../../data/cv/publications.ts";
+
+const tabs = [
+  { id: "bio", label: "Bio" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+  { id: "skills", label: "Skills" },
+  { id: "publications", label: "Publications" },
+];
 ---
-<CVLayout title="SY | Bio">
-  <section>
-    <h2>Bio</h2>
-    <h3>Bio Subtitle</h3>
-    <p>
-      Born on November 11<sup>th</sup>, 1994 in Dnipro(UA). Got basic
-      education at Dnipro's General (elementary, middle and high combined)
-      School #22. In 2012 went to Odessa(UA) to get musical education at
-      Odessa National College of Arts and Culture. Graduated in 2016.
-    </p>
-    <h4>Heading 4</h4>
-    <p>
-      The same year started the mandatory military service period (18 month)
-      in Lviv(UA). Served as a gunner in Ukrainian National Guard
-      (Military Police). Carried out escorting and guarding defendants and
-      convicts in the courtrooms as part of the guard. Was transferred to
-      the reserve in December 2017.
-    </p>
-    <h5>Heading 5</h5>
-    <p>
-      In 2018 moved back to Odessa, worked as freelance musician doing
-      gigs and cruse ship contracts. With the start of global COVID-19
-      pandemic changed occupation. Starting from July 2020 became member
-      of Periodix.Net team as a lead generation specialist.
-      In March 2021 got the position of Junior Front-End Developer in the
-      same company.
-    </p>
-    <p>
-      From September 2022 entered GISMA University of Applied Science
-      to complete Bachelors Degree of Software Engineering.
-    </p>
-    <p>
-      From March 2023 started working as Full-Stack Software Engineer
-      (Working Student) at PERFACCT GmbH located in Potsdam (Brandenburg,
-      Germany).
-    </p>
-  </section>
-</CVLayout>
+
+<Page
+  title="Bio — SY"
+  description="Background, experience, and skills of Serhii Yahdzhyiev."
+>
+  <div class="cv-page">
+    <header class="cv-page__header">
+      <div class="cv-page__intro">
+        <h1>{main.full_name}</h1>
+        <p class="cv-page__title">{main.title}</p>
+        <p class="cv-page__location">{main.location}</p>
+      </div>
+      <a
+        href="/cv.pdf"
+        download="Serhii_Yahdzhyiev_CV.pdf"
+        class="cv-download-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" x2="12" y1="15" y2="3"></line>
+        </svg>
+        Download CV
+      </a>
+    </header>
+
+    <!-- Tab bar -->
+    <nav class="cv-tabs" role="tablist" aria-label="CV sections">
+      {
+        tabs.map((tab, i) => (
+          <button
+            class:list={["cv-tab", { "cv-tab--active": i === 0 }]}
+            data-tab={tab.id}
+            role="tab"
+            id={`tab-${tab.id}`}
+            aria-selected={i === 0 ? "true" : "false"}
+            aria-controls={`panel-${tab.id}`}
+          >
+            {tab.label}
+          </button>
+        ))
+      }
+    </nav>
+
+    <!-- Bio -->
+    <div
+      data-panel="bio"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-bio"
+      aria-labelledby="tab-bio"
+    >
+      <div class="bio-text">
+        <p>
+          Born 1994 in Dnipro, Ukraine. Graduated in performance arts from the
+          State College of Arts and Culture (Odessa, 2016). After a period of
+          military service and a career as a cruise ship musician, pivoted to
+          software development in 2021. Completed a Bachelor's in Software
+          Engineering at GISMA University of Applied Sciences (Potsdam, 2025).
+        </p>
+        <p>
+          Contributes across the full software development lifecycle — from
+          requirements analysis and architecture design to implementation,
+          testing, and deployment. Places strong emphasis on reproducibility,
+          maintainability, and transparency of results. Primary interests:
+          data-driven applications that leverage modern algorithms to automate
+          and digitalize complex processes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div
+      data-panel="experience"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-experience"
+      aria-labelledby="tab-experience"
+      hidden
+    >
+      <ul class="entry-list">
+        {
+          experience.map((item) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">{item.title}</h3>
+                  <span class="entry__sub">{item.company}</span>
+                </div>
+                <span class="entry__period">{item.period}</span>
+              </div>
+              {item.list && item.list.length > 0 && (
+                <ul class="entry__list">
+                  {item.list.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Projects -->
+    <div
+      data-panel="projects"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-projects"
+      aria-labelledby="tab-projects"
+      hidden
+    >
+      <ul class="entry-list">
+        {
+          projects.map((project) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">
+                    {project.title}
+                    {project.tags.map((tag) => (
+                      <span class="entry__tag">{tag}</span>
+                    ))}
+                  </h3>
+                  <span class="entry__sub">{project.organization}</span>
+                </div>
+                <span class="entry__period">{project.period}</span>
+              </div>
+              <ul class="entry__list">
+                {project.list.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+              <p class="entry__tools">
+                <span class="entry__tools-label">Tools:</span>
+                {project.tools.join(" · ")}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Education -->
+    <div
+      data-panel="education"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-education"
+      aria-labelledby="tab-education"
+      hidden
+    >
+      <ul class="entry-list">
+        {
+          education.map((item) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">{item.institution}</h3>
+                  <span class="entry__sub">{item.degree}</span>
+                  <span class="entry__location">{item.location}</span>
+                </div>
+                <span class="entry__period">{item.period}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div
+      data-panel="skills"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-skills"
+      aria-labelledby="tab-skills"
+      hidden
+    >
+      <div class="skills-section">
+        <h2 class="cv-section-heading">Soft Skills</h2>
+        <ul class="soft-skills-list">
+          {skills.soft.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+
+      <div class="skills-section">
+        <h2 class="cv-section-heading">Frontend</h2>
+        <ul class="skills-list">
+          {
+            skills.frontend.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div
+                  class="skill-item__bar"
+                  role="progressbar"
+                  aria-valuenow={s.level}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label={`${s.title}: ${s.level}%`}
+                  style={`--pct: ${s.level}%`}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="skills-section">
+        <h2 class="cv-section-heading">Backend</h2>
+        <ul class="skills-list">
+          {
+            skills.backend.map((s) => (
+              <li class="skill-item">
+                <span class="skill-item__name">{s.title}</span>
+                <div
+                  class="skill-item__bar"
+                  role="progressbar"
+                  aria-valuenow={s.level}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label={`${s.title}: ${s.level}%`}
+                  style={`--pct: ${s.level}%`}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="skills-grid">
+        <div>
+          <h2 class="cv-section-heading">System Engineering / HPC</h2>
+          <ul class="skills-list">
+            {
+              skills.systems.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">DevOps & Processes</h2>
+          <ul class="skills-list">
+            {
+              skills.devops.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">QA & Testing</h2>
+          <ul class="skills-list">
+            {
+              skills.qa.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">Musical</h2>
+          <ul class="skills-list">
+            {
+              skills.musical.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="cv-section-heading">Languages</h2>
+          <ul class="skills-list">
+            {
+              skills.languages.map((s) => (
+                <li class="skill-item">
+                  <span class="skill-item__name">{s.title}</span>
+                  <div
+                    class="skill-item__bar"
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label={`${s.title}: ${s.level}%`}
+                    style={`--pct: ${s.level}%`}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div
+      data-panel="publications"
+      class="cv-panel"
+      role="tabpanel"
+      id="panel-publications"
+      aria-labelledby="tab-publications"
+      hidden
+    >
+      <ul class="entry-list">
+        {
+          publications.map((pub) => (
+            <li class="entry">
+              <div class="entry__header">
+                <div>
+                  <h3 class="entry__title">
+                    {pub.url ? (
+                      <a href={pub.url} target="_blank" rel="noreferrer">
+                        {pub.title}
+                      </a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
+                  <p class="entry__authors">
+                    {pub.authors.map((a, i) => (
+                      <span
+                        class:list={[
+                          "pub-author",
+                          { "pub-author--self": a === main.full_name },
+                        ]}
+                      >
+                        {a}
+                        {i < pub.authors.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </p>
+                  {pub.venue && <span class="entry__sub">{pub.venue}</span>}
+                </div>
+                <span class="entry__period">{pub.year}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Page>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".cv-tab");
+    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+
+        tabs.forEach((t) => {
+          t.classList.remove("cv-tab--active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("cv-tab--active");
+        tab.setAttribute("aria-selected", "true");
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.panel !== target;
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .cv-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--sp-7) var(--sp-5);
+  }
+
+  /* Header */
+  .cv-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-6);
+    /* margin-bottom: var(--sp-7); */
+    padding-bottom: var(--sp-6);
+    /* border-bottom: 1px solid var(--clr-border-subtle); */
+  }
+
+  .cv-page__header h1 {
+    font-size: var(--fs-4);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .cv-page__title {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .cv-page__location {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    margin: 0;
+  }
+
+  .cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 0.6em 1.2em;
+    background: var(--clr-accent);
+    color: var(--clr-bg-body);
+    border: 1px solid var(--clr-accent);
+    border-radius: var(--rd-md);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .cv-download-btn:hover {
+    opacity: 0.85;
+  }
+
+  /* Tabs */
+  .cv-tabs {
+    display: flex;
+    gap: 0;
+    background-image: linear-gradient(
+      var(--clr-border-subtle),
+      var(--clr-border-subtle)
+    );
+    background-size: 100% 1px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    margin-bottom: var(--sp-6);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cv-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cv-tab {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    padding: var(--sp-3) var(--sp-4);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .cv-tab:hover {
+    color: var(--clr-accent);
+  }
+
+  .cv-tab--active {
+    color: var(--clr-text-primary);
+    border-bottom-color: var(--clr-accent);
+  }
+
+  /* Panels */
+  .cv-panel {
+    animation: panel-in 0.15s ease;
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Bio */
+  .bio-text p {
+    /* font-size: var(--fs-2); */
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--sp-4);
+  }
+
+  .cv-section-heading {
+    font-size: var(--fs-2);
+    margin: 0 0 var(--sp-4);
+    color: var(--clr-text-primary);
+  }
+
+  .soft-skills-list {
+    list-style: disc;
+    padding-left: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* Entries (experience, projects, education) */
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-7);
+  }
+
+  .entry__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);
+  }
+
+  .entry__title {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-semibold);
+    color: var(--clr-text-primary);
+    margin: 0 0 var(--sp-1);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .entry__title a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .entry__tag {
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: var(--rd-sm);
+    padding: 0.1em 0.5em;
+    font-weight: var(--fw-regular);
+  }
+
+  .entry__sub {
+    display: block;
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+  }
+
+  .entry__location {
+    display: block;
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    margin-top: var(--sp-1);
+  }
+
+  .entry__period {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .entry__list {
+    list-style: disc;
+    padding-left: var(--sp-5);
+    margin: 0 0 var(--sp-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .entry__tools {
+    font-size: var(--fs-0);
+    font-family: var(--ff-mono);
+    color: var(--clr-text-muted);
+    margin: 0;
+    line-height: var(--lh-body);
+  }
+
+  .entry__tools-label {
+    color: var(--clr-text-secondary);
+    font-weight: var(--fw-medium);
+    margin-right: var(--sp-2);
+  }
+
+  /* Publications */
+  .entry__authors {
+    font-size: var(--fs-1);
+    color: var(--clr-text-muted);
+    margin: var(--sp-2) 0 0;
+    line-height: var(--lh-body);
+  }
+
+  .pub-author--self {
+    color: var(--clr-text-primary);
+    font-weight: var(--fw-medium);
+  }
+
+  /* Skills */
+  .skills-section {
+    margin-bottom: var(--sp-7);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-7) var(--sp-8);
+  }
+
+  .skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .skill-item {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+
+  .skill-item__name {
+    font-size: var(--fs-0);
+    color: var(--clr-text-secondary);
+    white-space: nowrap;
+  }
+
+  .skill-item__bar {
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--clr-accent) var(--pct),
+      var(--clr-border-subtle) var(--pct)
+    );
+    border-radius: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .cv-page__header {
+      flex-direction: column;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skill-item {
+      grid-template-columns: 9rem 1fr;
+    }
+
+    .entry__header {
+      flex-direction: column;
+      gap: var(--sp-1);
+    }
+  }
+</style>

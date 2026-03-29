@@ -1,4 +1,5 @@
 :root {
+  --ff-display: "Fraunces", serif;
   --ff-sans: "Archivo", sans-serif;
   --ff-mono: "Inconsolata", monospace;
 
@@ -19,35 +20,14 @@
   --lh-body: 1.6;
 }
 
-@font-face {
-  font-family: "Archivo";
-  src: url("/fonts/Archivo-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Archivo";
-  src: url("/fonts/Archivo-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/700.css";
 
 @font-face {
   font-family: "Archivo";
   src: url("/fonts/Archivo-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Archivo";
-  src: url("/fonts/Archivo-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -61,14 +41,6 @@
 
 @font-face {
   font-family: "Archivo";
-  src: url("/fonts/Archivo-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Archivo";
   src: url("/fonts/Archivo-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
@@ -77,25 +49,9 @@
 
 @font-face {
   font-family: "Archivo";
-  src: url("/fonts/Archivo-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Archivo";
   src: url("/fonts/Archivo-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Archivo";
-  src: url("/fonts/Archivo-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
   font-display: swap;
 }
 

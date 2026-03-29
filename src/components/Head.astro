@@ -1,23 +1,6 @@
 ---
-import "../styles/index.scss"
-import Meta from "./Meta.astro";
-
-const {title = "SY", ...props } = Astro.props;
+import "../styles/index.scss";
 ---
 
-<link
-  rel="sitemap"
-  href="/sitemap-index.xml"
->
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href="/favicon.svg"
-/>
-<link
-  rel="shortcut icon"
-  href="/favicon.ico?"
-  type="image/x-icon"
-/>
-<Meta/>
-<title>{title}</title>
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />

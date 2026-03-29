@@ -1,88 +1,59 @@
 export const skills = {
-  musical: [
-    {
-      title: 'Sound Production',
-      level: 70,
-    },
-    {
-      title: 'Composition & Arrangement',
-      level: 70,
-    },
-    {
-      title: 'Keys',
-      level: 50,
-    },
-    {
-      title: 'Guitar/Bass',
-      level: 70,
-    },
-    {
-      title: 'Drums & Percussion',
-      level: 80,
-    },
+  frontend: [
+    { title: "HTML / CSS / SCSS", level: 95 },
+    { title: "JavaScript / TypeScript", level: 90 },
+    { title: "React / Next.js", level: 80 },
+    { title: "Vue / Nuxt", level: 80 },
+    { title: "Angular", level: 70 },
+    { title: "Electron / Ionic", level: 60 },
   ],
-  development: [
-    {
-      title: 'JavaScript/TypeScript',
-      level: 90,
-    },
-    {
-      title: 'Python',
-      level: 90,
-    },
-    {
-      title: 'C',
-      level: 70,
-    },
-    {
-      title: 'Bash',
-      level: 60,
-    },
-    {
-      title: 'HTML/CSS',
-      level: 90,
-    },
-    {
-      title: 'MongoDB',
-      level: 70,
-    },
-    {
-      title: 'PostgresQL',
-      level: 70,
-    },
-    {
-      title: 'Node.js',
-      level: 70,
-    },
-    {
-      title: 'Angular',
-      level: 50,
-    },
-    {
-      title: 'React',
-      level: 70,
-    },
-    {
-      title: 'Vue',
-      level: 70,
-    },
+  backend: [
+    { title: "Python", level: 90 },
+    { title: "Flask / FastAPI", level: 85 },
+    { title: "Node.js / Express.js", level: 80 },
+    { title: "PostgreSQL / SQLite", level: 75 },
+    { title: "MongoDB", level: 70 },
+    { title: "OAuth2 / OpenID Connect", level: 70 },
+  ],
+  systems: [
+    { title: "GNU/Linux", level: 85 },
+    { title: "Bash / Zsh", level: 75 },
+    { title: "C", level: 70 },
+    { title: "IPC / Slurm", level: 65 },
+    { title: "Rust (Basic)", level: 45 },
+  ],
+  devops: [
+    { title: "Docker", level: 85 },
+    { title: "GitLab / GitHub CI", level: 80 },
+    { title: "Nginx", level: 65 },
+    { title: "AWS / Digital Ocean", level: 65 },
+    { title: "Oracle Cloud", level: 60 },
+  ],
+  qa: [
+    { title: "Pytest", level: 80 },
+    { title: "Jest / Vitest", level: 80 },
+    { title: "Playwright", level: 75 },
+    { title: "Postman", level: 70 },
+  ],
+  musical: [
+    { title: "Drums & Percussion", level: 80 },
+    { title: "Sound Production", level: 70 },
+    { title: "Composition & Arrangement", level: 70 },
+    { title: "Guitar / Bass", level: 70 },
+    { title: "Keys", level: 50 },
   ],
   languages: [
-    {
-      title: 'German',
-      level: 40,
-    },
-    {
-      title: 'English',
-      level: 90,
-    },
-    {
-      title: 'Russian',
-      level: 100,
-    },
-    {
-      title: 'Ukrainian',
-      level: 100,
-    },
+    { title: "Ukrainian", level: 100 },
+    { title: "Russian", level: 100 },
+    { title: "English", level: 90 },
+    { title: "German", level: 40 },
+  ],
+  soft: [
+    "Quickly transfer knowledge and experience to new domains and technologies",
+    "Open, transparent, and honest communication",
+    "Focus on problem solving over personal profiling",
+    "High adaptability in agile project environments",
+    "Actively share knowledge with clients and team members",
+    "Proactively propose solution approaches to customer challenges",
   ],
 };

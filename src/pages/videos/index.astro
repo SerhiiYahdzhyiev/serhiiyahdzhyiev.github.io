@@ -1,0 +1,144 @@
+---
+import Page from "../../layouts/Page.astro";
+import LiteYouTube from "../../components/LiteYouTube.astro";
+import { videos } from "../../data/videos.ts";
+import { main } from "../../data/main.ts";
+---
+
+<Page
+  title="Videos — SY"
+  description="Video performances and sessions by Serhii Yahdzhyiev."
+>
+  <div class="videos-page">
+    <header class="videos-page__header">
+      <p class="videos-page__lead">
+        Performances, sessions, and experiments on video.
+      </p>
+      <a
+        href={main.links.youtube}
+        target="_blank"
+        rel="noreferrer"
+        class="videos-page__youtube"
+      >
+        Watch more on YouTube →
+      </a>
+    </header>
+
+    {
+      videos.length === 0 ? (
+        <p class="videos-page__empty">No videos yet. Check back soon.</p>
+      ) : (
+        <ul class="video-grid">
+          {videos.map((video) => (
+            <li class="video-card">
+              <div class="video-card__embed">
+                <LiteYouTube videoId={video.youtubeId} title={video.title} />
+              </div>
+              <div class="video-card__info">
+                <h2 class="video-card__title">{video.title}</h2>
+                {video.description && (
+                  <p class="video-card__desc">{video.description}</p>
+                )}
+                <span class="video-card__year">{video.year}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Page>
+
+<style>
+  .videos-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--sp-6) var(--sp-5);
+  }
+
+  .videos-page__header {
+    margin-bottom: var(--sp-7);
+  }
+
+  .videos-page__header h1 {
+    font-size: var(--fs-5);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .videos-page__lead {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0 0 var(--sp-4);
+    line-height: var(--lh-body);
+  }
+
+  .videos-page__youtube {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.15s ease;
+  }
+
+  .videos-page__youtube:hover {
+    color: var(--clr-accent);
+  }
+
+  .videos-page__empty {
+    color: var(--clr-text-muted);
+    font-style: italic;
+  }
+
+  .video-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--sp-6);
+  }
+
+  .video-card {
+    background: var(--clr-bg-surface);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: var(--rd-lg);
+    overflow: hidden;
+    transition:
+      box-shadow 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .video-card:hover {
+    box-shadow: var(--sh-surface-2);
+    transform: translateY(-2px);
+  }
+
+  .video-card__embed {
+    overflow: hidden;
+  }
+
+  .video-card__info {
+    padding: var(--sp-4) var(--sp-5);
+  }
+
+  .video-card__title {
+    font-size: var(--fs-2);
+    color: var(--clr-text-primary);
+    margin: 0 0 var(--sp-2);
+  }
+
+  .video-card__desc {
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .video-card__year {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+  }
+</style>

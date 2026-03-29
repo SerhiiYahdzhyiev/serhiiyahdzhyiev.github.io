@@ -1,0 +1,187 @@
+---
+import Page from "../../layouts/Page.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+// Collect all unique tags
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<Page
+  title="Blog — SY"
+  description="Writing about software, music, and whatever overlaps."
+>
+  <div class="blog-index">
+    <header class="blog-index__header">
+      <h1>Blog</h1>
+      <p class="blog-index__lead">
+        Writing about software, music production, and the things in between.
+      </p>
+    </header>
+
+    {
+      allTags.length > 0 && (
+        <div class="blog-index__tags">
+          {allTags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      posts.length === 0 ? (
+        <p class="blog-index__empty">No posts yet. Check back soon.</p>
+      ) : (
+        <ul class="blog-index__list">
+          {posts.map((post) => (
+            <li class="post-card">
+              <a href={`/blog/${post.slug}/`} class="post-card__link">
+                <div class="post-card__meta">
+                  <time
+                    class="post-card__date"
+                    datetime={post.data.publishedAt.toISOString()}
+                  >
+                    {formatDate(post.data.publishedAt)}
+                  </time>
+                  {post.data.tags.length > 0 && (
+                    <div class="post-card__tags">
+                      {post.data.tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <h2 class="post-card__title">{post.data.title}</h2>
+                <p class="post-card__desc">{post.data.description}</p>
+                <span class="post-card__cta">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Page>
+
+<style>
+  .blog-index {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .blog-index__header {
+    margin-bottom: var(--sp-7);
+  }
+
+  .blog-index__header h1 {
+    font-size: var(--fs-5);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .blog-index__lead {
+    font-size: var(--fs-2);
+    color: var(--clr-text-secondary);
+    margin: 0;
+    line-height: var(--lh-body);
+  }
+
+  .blog-index__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-7);
+    padding-bottom: var(--sp-5);
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  .blog-index__empty {
+    color: var(--clr-text-muted);
+    font-style: italic;
+  }
+
+  .blog-index__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .post-card {
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  .post-card:first-child {
+    border-top: 1px solid var(--clr-border-subtle);
+  }
+
+  .post-card__link {
+    display: block;
+    padding: var(--sp-6) 0;
+    text-decoration: none;
+    color: inherit;
+    transition: none;
+  }
+
+  .post-card__link:hover .post-card__title {
+    color: var(--clr-accent);
+  }
+
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-3);
+    flex-wrap: wrap;
+  }
+
+  .post-card__date {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+  }
+
+  .post-card__tags {
+    display: flex;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+
+  .post-card__title {
+    font-size: var(--fs-3);
+    color: var(--clr-text-primary);
+    margin: 0 0 var(--sp-3);
+    transition: color 0.15s ease;
+    font-family: var(--ff-display);
+  }
+
+  .post-card__desc {
+    font-size: var(--fs-1);
+    color: var(--clr-text-secondary);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--sp-4);
+    max-width: 65ch;
+  }
+
+  .post-card__cta {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-0);
+    color: var(--clr-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

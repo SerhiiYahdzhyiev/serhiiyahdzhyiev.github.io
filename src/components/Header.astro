@@ -1,13 +1,77 @@
 ---
-import Portrait from "./Portrait.astro";
-
 import Navigation from "./Navigation.astro";
+import ThemeToggle from "./layout/ThemeToggle.astro";
+import { main } from "../data/main.ts";
 
-import {main} from "../data/main.ts";
+const isHome = Astro.url.pathname === "/";
 ---
 
-<header>
-  <div class="flex items-center justify-between">
-    <Navigation/>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a
+      href="/"
+      class:list={[
+        "site-header__wordmark",
+        { "site-header__wordmark--hidden": isHome },
+      ]}
+      aria-label="Home"
+      aria-hidden={isHome ? "true" : undefined}
+      tabindex={isHome ? -1 : undefined}
+    >
+      {main.handle}
+    </a>
+    <div class="site-header__nav">
+      <Navigation />
+    </div>
+    <ThemeToggle />
   </div>
 </header>
+
+<style>
+  .site-header {
+    background-color: var(--clr-bg-header);
+    border-bottom: 1px solid var(--clr-border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-header__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--sp-4) var(--sp-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-5);
+  }
+
+  .site-header__wordmark {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-2);
+    font-weight: var(--fw-bold);
+    color: var(--clr-text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .site-header__wordmark:hover {
+    color: var(--clr-accent);
+  }
+
+  .site-header__wordmark--hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .site-header__inner {
+      justify-content: space-between;
+    }
+
+    .site-header__nav {
+      order: -1;
+    }
+  }
+</style>

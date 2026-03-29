@@ -1,9 +1,21 @@
 ---
-import BaseLayout from "../layouts/base.astro";
+import Page from "../layouts/Page.astro";
+import Hero from "../components/landing/Hero.astro";
 ---
 
-<BaseLayout title="SY | Home">
-    <h1>
-        This site is currently under construction...
-    </h1>
-</BaseLayout>
+<Page
+  title="SY — Serhii Yahdzhyiev"
+  description="Software engineer and musician"
+>
+  <div class="landing">
+    <Hero />
+  </div>
+</Page>
+
+<style>
+  .landing {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+</style>

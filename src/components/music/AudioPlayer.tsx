@@ -116,14 +116,27 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
       {/* Now playing bar */}
       <div className="player-bar">
         <div className="player-bar__info">
-          {currentTrack ? (
-            <>
-              <span className="player-bar__title">{currentTrack.title}</span>
-              <span className="player-bar__year">{currentTrack.year}</span>
-            </>
-          ) : (
-            <span className="player-bar__idle">Select a track to play</span>
-          )}
+          <div className="player-bar__cover" aria-hidden="true">
+            {currentTrack?.cover ? (
+              <img
+                src={`/music/covers/${currentTrack.cover}`}
+                alt=""
+                className="player-bar__cover-img"
+              />
+            ) : (
+              <div className="player-bar__cover-placeholder" />
+            )}
+          </div>
+          <div className="player-bar__info-text">
+            {currentTrack ? (
+              <>
+                <span className="player-bar__title">{currentTrack.title}</span>
+                <span className="player-bar__year">{currentTrack.year}</span>
+              </>
+            ) : (
+              <span className="player-bar__idle">Select a track to play</span>
+            )}
+          </div>
         </div>
 
         <div className="player-bar__controls">
@@ -341,6 +354,37 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
         }
 
         .player-bar__info {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: var(--sp-3);
+          min-width: 0;
+        }
+
+        .player-bar__cover {
+          flex-shrink: 0;
+          width: 3rem;
+          height: 3rem;
+          border-radius: var(--rd-sm);
+          overflow: hidden;
+          border: 1px solid var(--clr-border-subtle);
+          background: var(--clr-surface-1);
+        }
+
+        .player-bar__cover-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .player-bar__cover-placeholder {
+          width: 100%;
+          height: 100%;
+          background: var(--clr-surface-2);
+        }
+
+        .player-bar__info-text {
           display: flex;
           flex-direction: column;
           gap: var(--sp-1);

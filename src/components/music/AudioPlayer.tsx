@@ -324,13 +324,37 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
               <span className="track-item__year">{track.year}</span>
               <span className="track-item__duration">{track.duration}</span>
             </button>
+            <a
+              href={`/music/tracks/${track.filename}`}
+              download
+              className="track-item__download"
+              aria-label={`Download ${track.title}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" x2="12" y1="15" y2="3" />
+              </svg>
+            </a>
           </li>
         ))}
       </ul>
 
       <style>{`
         .audio-player {
-          max-width: 800px;
+          width: 100%;
         }
 
         .player-empty {
@@ -518,6 +542,8 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
         }
 
         .track-item {
+          display: flex;
+          align-items: center;
           border-bottom: 1px solid var(--clr-border-subtle);
         }
 
@@ -534,8 +560,24 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           font-weight: var(--fw-medium);
         }
 
+        .track-item__download {
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: var(--sp-4) var(--sp-4) var(--sp-4) var(--sp-2);
+          color: var(--clr-text-muted);
+          text-decoration: none;
+          transition: color 0.15s ease;
+        }
+
+        .track-item__download:hover {
+          color: var(--clr-accent);
+        }
+
         .track-item__btn {
-          width: 100%;
+          flex: 1;
+          min-width: 0;
           display: grid;
           grid-template-columns: 2.5rem 1fr auto auto auto;
           align-items: center;

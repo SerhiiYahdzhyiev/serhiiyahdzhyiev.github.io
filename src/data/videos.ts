@@ -7,24 +7,9 @@ export interface Video {
 
 export const videos: Video[] = [
   {
-    youtubeId: "hiWLPV1Ttss",
-    title: "[SY] - Maybe",
-    year: 2025,
-  },
-  {
     youtubeId: "58L9Klsqw7M",
     title: "[SY] - Glass",
     year: 2020,
-  },
-  {
-    youtubeId: "fUNuJS1f91g",
-    title: "[SY] - Linecrossing",
-    year: 2020,
-  },
-  {
-    youtubeId: "XFhNrmBfSg8",
-    title: "TYN Trio - Sessions",
-    year: 2019,
   },
   {
     youtubeId: "e4gSFQYaAyM",
@@ -36,4 +21,9 @@ export const videos: Video[] = [
     title: "The Cure - Lullaby (SY's Cover)",
     year: 2020,
   },
+  {
+    youtubeId: "zCdLzwSHTns",
+    title: "[SY] - Todays Queen",
+    year: 2020,
+  }
 ];

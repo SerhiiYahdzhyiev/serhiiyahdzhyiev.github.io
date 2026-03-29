@@ -16,6 +16,7 @@ const music = defineCollection({
   type: "data",
   schema: z.object({
     title: z.string(),
+    album: z.string().optional(),
     year: z.number(),
     duration: z.string(),
     filename: z.string(),

@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 
 interface Track {
   title: string;
+  album?: string;
   year: number;
   duration: string;
   filename: string;
@@ -28,20 +29,71 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
   const [volume, setVolume] = useState(0.8);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const currentTrack = currentIdx !== null ? tracks[currentIdx] : null;
+  // Sort tracks into album order: albums by year desc then name asc,
+  // tracks within each album by leading track number in filename.
+  const orderedTracks = useMemo(() => {
+    const albumMap = new Map<string, Track[]>();
+    tracks.forEach((track) => {
+      const key = track.album ?? "—";
+      if (!albumMap.has(key)) albumMap.set(key, []);
+      albumMap.get(key)!.push(track);
+    });
 
-  // Sync audio element when track changes
+    albumMap.forEach((albumTracks) => {
+      albumTracks.sort(
+        (a, b) => (parseInt(a.filename) || 0) - (parseInt(b.filename) || 0)
+      );
+    });
+
+    return Array.from(albumMap.entries())
+      .sort(([aKey, aTracks], [bKey, bTracks]) => {
+        const aYear = aTracks[0]?.year ?? 0;
+        const bYear = bTracks[0]?.year ?? 0;
+        return bYear - aYear || aKey.localeCompare(bKey);
+      })
+      .flatMap(([, albumTracks]) => albumTracks);
+  }, [tracks]);
+
+  // Build album sections for rendering, preserving flat indices for playback.
+  const albumSections = useMemo(() => {
+    const sections: Array<{
+      name: string;
+      cover?: string;
+      year: number;
+      tags: string[];
+      entries: Array<{ track: Track; idx: number }>;
+    }> = [];
+
+    orderedTracks.forEach((track, idx) => {
+      const albumName = track.album ?? "—";
+      const last = sections[sections.length - 1];
+      if (!last || last.name !== albumName) {
+        sections.push({
+          name: albumName,
+          cover: track.cover,
+          year: track.year,
+          tags: track.tags,
+          entries: [],
+        });
+      }
+      sections[sections.length - 1].entries.push({ track, idx });
+    });
+
+    return sections;
+  }, [orderedTracks]);
+
+  const currentTrack = currentIdx !== null ? orderedTracks[currentIdx] : null;
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || currentIdx === null) return;
-    audio.src = `/music/tracks/${tracks[currentIdx].filename}`;
+    audio.src = `/music/tracks/${orderedTracks[currentIdx].filename}`;
     audio
       .play()
       .then(() => setIsPlaying(true))
       .catch(() => setIsPlaying(false));
-  }, [currentIdx, tracks]);
+  }, [currentIdx, orderedTracks]);
 
-  // Volume sync
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);
@@ -55,13 +107,13 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
   }, []);
 
   const handleEnded = useCallback(() => {
-    if (currentIdx !== null && currentIdx < tracks.length - 1) {
+    if (currentIdx !== null && currentIdx < orderedTracks.length - 1) {
       setCurrentIdx(currentIdx + 1);
     } else {
       setIsPlaying(false);
       setCurrentTime(0);
     }
-  }, [currentIdx, tracks.length]);
+  }, [currentIdx, orderedTracks.length]);
 
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
@@ -96,7 +148,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
     if (audioRef.current) audioRef.current.currentTime = val;
   }, []);
 
-  if (tracks.length === 0) {
+  if (orderedTracks.length === 0) {
     return (
       <div className="player-empty">
         <p>No tracks yet. Check back soon.</p>
@@ -131,7 +183,14 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
             {currentTrack ? (
               <>
                 <span className="player-bar__title">{currentTrack.title}</span>
-                <span className="player-bar__year">{currentTrack.year}</span>
+                <span className="player-bar__meta">
+                  {currentTrack.album && (
+                    <span className="player-bar__album">
+                      {currentTrack.album}
+                    </span>
+                  )}
+                  <span className="player-bar__year">{currentTrack.year}</span>
+                </span>
               </>
             ) : (
               <span className="player-bar__idle">Select a track to play</span>
@@ -210,10 +269,13 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
             className="player-btn player-btn--next"
             onClick={() =>
               currentIdx !== null &&
-              currentIdx < tracks.length - 1 &&
+              currentIdx < orderedTracks.length - 1 &&
               setCurrentIdx(currentIdx + 1)
             }
-            disabled={currentIdx === null || currentIdx === tracks.length - 1}
+            disabled={
+              currentIdx === null ||
+              currentIdx === orderedTracks.length - 1
+            }
             aria-label="Next track"
           >
             <svg
@@ -280,77 +342,95 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
         </div>
       </div>
 
-      {/* Track list */}
-      <ul className="track-list">
-        {tracks.map((track, idx) => (
-          <li
-            key={track.filename}
-            className={`track-item${idx === currentIdx ? " track-item--active" : ""}`}
-          >
-            <button
-              className="track-item__btn"
-              onClick={() => selectTrack(idx)}
-              aria-label={`Play ${track.title}`}
-              aria-pressed={idx === currentIdx && isPlaying}
-            >
-              <span className="track-item__num">
-                {idx === currentIdx && isPlaying ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="none"
-                    aria-hidden="true"
-                  >
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
-                  </svg>
-                ) : (
-                  <span>{(idx + 1).toString().padStart(2, "0")}</span>
-                )}
-              </span>
-              <span className="track-item__title">{track.title}</span>
-              {track.tags.length > 0 && (
-                <span className="track-item__tags">
-                  {track.tags.map((t) => (
-                    <span key={t} className="track-item__tag">
-                      {t}
-                    </span>
-                  ))}
-                </span>
+      {/* Album sections */}
+      <div className="album-list">
+        {albumSections.map((album) => (
+          <div key={album.name} className="album-section">
+            <div className="album-header">
+              {album.cover && (
+                <img
+                  src={`/music/covers/${album.cover}`}
+                  alt=""
+                  className="album-header__cover"
+                  aria-hidden="true"
+                />
               )}
-              <span className="track-item__year">{track.year}</span>
-              <span className="track-item__duration">{track.duration}</span>
-            </button>
-            <a
-              href={`/music/tracks/${track.filename}`}
-              download
-              className="track-item__download"
-              aria-label={`Download ${track.title}`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" x2="12" y1="15" y2="3" />
-              </svg>
-            </a>
-          </li>
+              <span className="album-header__name">{album.name}</span>
+              <span className="album-header__year">{album.year}</span>
+              <span className="album-header__tags">
+                {album.tags.map((t) => (
+                  <span key={t} className="album-header__tag">
+                    {t}
+                  </span>
+                ))}
+              </span>
+            </div>
+
+            <ul className="track-list">
+              {album.entries.map(({ track, idx }, pos) => (
+                <li
+                  key={track.filename}
+                  className={`track-item${idx === currentIdx ? " track-item--active" : ""}`}
+                >
+                  <button
+                    className="track-item__btn"
+                    onClick={() => selectTrack(idx)}
+                    aria-label={`Play ${track.title}`}
+                    aria-pressed={idx === currentIdx && isPlaying}
+                  >
+                    <span className="track-item__num">
+                      {idx === currentIdx && isPlaying ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          stroke="none"
+                          aria-hidden="true"
+                        >
+                          <rect x="6" y="4" width="4" height="16" />
+                          <rect x="14" y="4" width="4" height="16" />
+                        </svg>
+                      ) : (
+                        <span>{(pos + 1).toString().padStart(2, "0")}</span>
+                      )}
+                    </span>
+                    <span className="track-item__title">{track.title}</span>
+                    <span className="track-item__duration">
+                      {track.duration}
+                    </span>
+                  </button>
+                  <a
+                    href={`/music/tracks/${track.filename}`}
+                    download
+                    className="track-item__download"
+                    aria-label={`Download ${track.title}`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <style>{`
         .audio-player {
@@ -374,7 +454,6 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           border: 1px solid var(--clr-border-subtle);
           border-radius: var(--rd-lg);
           margin-bottom: var(--sp-5);
-          flex-wrap: wrap;
         }
 
         .player-bar__info {
@@ -423,10 +502,18 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           text-overflow: ellipsis;
         }
 
-        .player-bar__year {
+        .player-bar__meta {
+          display: flex;
+          align-items: center;
+          gap: var(--sp-2);
           font-family: var(--ff-mono);
           font-size: var(--fs-0);
           color: var(--clr-text-muted);
+        }
+
+        .player-bar__album::after {
+          content: "·";
+          margin-left: var(--sp-2);
         }
 
         .player-bar__idle {
@@ -529,16 +616,69 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           flex: none;
         }
 
+        /* Album list */
+        .album-list {
+          display: flex;
+          flex-direction: column;
+          gap: var(--sp-4);
+        }
+
+        .album-section {
+          border: 1px solid var(--clr-border-subtle);
+          border-radius: var(--rd-lg);
+          overflow: hidden;
+        }
+
+        .album-header {
+          display: flex;
+          align-items: center;
+          gap: var(--sp-3);
+          padding: var(--sp-3) var(--sp-5);
+          background: var(--clr-bg-surface);
+          border-bottom: 1px solid var(--clr-border-subtle);
+        }
+
+        .album-header__cover {
+          flex-shrink: 0;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: var(--rd-sm);
+          object-fit: cover;
+          border: 1px solid var(--clr-border-subtle);
+        }
+
+        .album-header__name {
+          font-weight: var(--fw-medium);
+          font-size: var(--fs-1);
+          color: var(--clr-text-primary);
+          flex: 1;
+        }
+
+        .album-header__year {
+          font-family: var(--ff-mono);
+          font-size: var(--fs-0);
+          color: var(--clr-text-muted);
+        }
+
+        .album-header__tags {
+          display: flex;
+          gap: var(--sp-1);
+        }
+
+        .album-header__tag {
+          font-family: var(--ff-mono);
+          font-size: 0.7rem;
+          padding: 0.15em 0.5em;
+          border: 1px solid var(--clr-border-subtle);
+          border-radius: 2px;
+          color: var(--clr-text-muted);
+        }
+
         /* Track list */
         .track-list {
           list-style: none;
           padding: 0;
           margin: 0;
-          display: flex;
-          flex-direction: column;
-          border: 1px solid var(--clr-border-subtle);
-          border-radius: var(--rd-lg);
-          overflow: hidden;
         }
 
         .track-item {
@@ -579,10 +719,10 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           flex: 1;
           min-width: 0;
           display: grid;
-          grid-template-columns: 2.5rem 1fr auto auto auto;
+          grid-template-columns: 2rem 1fr auto;
           align-items: center;
           gap: var(--sp-3);
-          padding: var(--sp-4) var(--sp-5);
+          padding: var(--sp-3) var(--sp-5);
           background: none;
           border: none;
           cursor: pointer;
@@ -621,26 +761,6 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           color: var(--clr-accent);
         }
 
-        .track-item__tags {
-          display: flex;
-          gap: var(--sp-1);
-        }
-
-        .track-item__tag {
-          font-family: var(--ff-mono);
-          font-size: 0.7rem;
-          padding: 0.1em 0.4em;
-          border: 1px solid var(--clr-border-subtle);
-          border-radius: 2px;
-          color: var(--clr-text-muted);
-        }
-
-        .track-item__year {
-          font-family: var(--ff-mono);
-          font-size: var(--fs-0);
-          color: var(--clr-text-muted);
-        }
-
         .track-item__duration {
           font-family: var(--ff-mono);
           font-size: var(--fs-0);
@@ -663,7 +783,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
             display: none;
           }
 
-          .track-item__tags {
+          .album-header__tags {
             display: none;
           }
         }

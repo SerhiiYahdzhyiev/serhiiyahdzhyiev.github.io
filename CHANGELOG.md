@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Bio text
 - Skills data
 
+### Fixed
+
+- Play button icon centering in audio player
+
 ## 0.1.0
 
 ### Added

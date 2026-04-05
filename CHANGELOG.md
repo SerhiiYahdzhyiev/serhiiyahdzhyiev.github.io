@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Bio text
 - Skills data
+- node version lock in package.json file (now accepts 24.12.x)
 
 ### Fixed
 

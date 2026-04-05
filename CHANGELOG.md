@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Bio text
 - Skills data
-- node version lock in package.json file (now accepts 24.12.x)
+- Node version lock in package.json file (now accepts 24.12.x)
+- Devcontainer setup
 
 ### Fixed
 
@@ -135,7 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Theme toggle icon swap corrected: moon shown in **light** mode
   (hint: switch to dark), sun shown in **dark** mode
   (hint: switch to light)
-- Theme toggle icon invisible in dark mode — root cause:
+- Theme toggle icon invisible in dark mode - root cause:
   `:global(:not(.dark))` matched every ancestor without the class
   (e.g. `<body>`), hiding both icons simultaneously;
   fixed to `html:not(.dark)` / `html.dark`

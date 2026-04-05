@@ -259,6 +259,10 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
+                /* INFO: Fix play icon positioning a bit*/
+                style={{
+                  paddingLeft: !isPlaying ? '2px' : undefined
+                }}
               >
                 <polygon points="5 3 19 12 5 21 5 3" />
               </svg>

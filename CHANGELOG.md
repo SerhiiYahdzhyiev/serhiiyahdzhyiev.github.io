@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 0.1.1
+
+### Added
+
+- New cover videos
+- Recent publication from NAAICE
+
+### Changed
+
+- Bio text
+- Skills data
+- Node version lock in package.json file (now accepts 24.12.x)
+- Devcontainer setup
+
+### Fixed
+
+- Play button icon centering in audio player
+
 ## 0.1.0
 
 ### Added
@@ -118,7 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Theme toggle icon swap corrected: moon shown in **light** mode
   (hint: switch to dark), sun shown in **dark** mode
   (hint: switch to light)
-- Theme toggle icon invisible in dark mode — root cause:
+- Theme toggle icon invisible in dark mode - root cause:
   `:global(:not(.dark))` matched every ancestor without the class
   (e.g. `<body>`), hiding both icons simultaneously;
   fixed to `html:not(.dark)` / `html.dark`

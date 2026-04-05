@@ -1,0 +1,23 @@
+FROM node:24.12-alpine AS deps
+
+RUN mkdir -p /workspace && chown node:node /workspace
+
+WORKDIR /workspace
+
+USER node
+
+COPY --chown=node:node package.json package-lock.json ./
+RUN npm ci 
+
+FROM node:24.12-alpine AS runtime
+
+# INFO: Pre-create writable dirs as node-owned so named volumes
+# inherit the right ownership when Docker initialises them on first mount.
+RUN mkdir -p /workspace/node_modules /workspace/.astro /workspace/dist \
+    && chown -R node:node /workspace
+
+WORKDIR /workspace
+
+COPY --from=deps --chown=node:node /workspace/node_modules ./node_modules
+
+USER node
